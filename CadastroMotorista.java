@@ -15,20 +15,22 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroMotorista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField txtFieldNome;
+	private JTextField txtFiledNomeSocial;
+	private JTextField txtFieldCPF;
+	private JTextField txtFieldCNH;
+	private JTextField txtFieldEndereco;
+	private JTextField txtFieldBairro;
+	private JTextField txtFieldCidade;
+	private JTextField txtFieldCEP;
+	private JTextField txtFieldUF;
 
 	/**
 	 * Launch the application.
@@ -59,128 +61,128 @@ public class CadastroMotorista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("<html>Trabalhe conosco.<br/>Faça seu cadastro como motorista da UberLand!</html>");
-		lblNewLabel_3.setBounds(180, 107, 404, 60);
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
-		contentPane.add(lblNewLabel_3);
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(230, 10, 303, 76);
+		labelLogo.setForeground(new Color(0, 0, 0));
+		labelLogo.setBackground(new Color(0, 0, 0));
+		labelLogo.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_LogoF.png")));
+		getContentPane().add(labelLogo);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(230, 10, 303, 76);
-		label.setForeground(new Color(0, 0, 0));
-		label.setBackground(new Color(0, 0, 0));
-		label.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_LogoF.png")));
-		getContentPane().add(label);
+		JLabel lblTitulo = new JLabel("<html>Trabalhe conosco.<br/>Faça seu cadastro como motorista da UberLand!</html>");
+		lblTitulo.setBounds(180, 107, 404, 60);
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		contentPane.add(lblTitulo);
 		
-		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(210, 190, 46, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(210, 190, 46, 14);
+		contentPane.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setColumns(10);
-		textField.setBounds(265, 190, 268, 20);
-		contentPane.add(textField);
+		txtFieldNome = new JTextField();
+		txtFieldNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldNome.setColumns(10);
+		txtFieldNome.setBounds(265, 190, 268, 20);
+		contentPane.add(txtFieldNome);
 		
-		JLabel lblNomeSocialcomo = new JLabel("Nome Social");
-		lblNomeSocialcomo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNomeSocialcomo.setBounds(250, 230, 90, 14);
-		contentPane.add(lblNomeSocialcomo);
+		JLabel lblNomeSocial = new JLabel("Nome Social");
+		lblNomeSocial.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNomeSocial.setBounds(250, 230, 90, 14);
+		contentPane.add(lblNomeSocial);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		textField_1.setBounds(395, 231, 138, 20);
-		contentPane.add(textField_1);
+		txtFiledNomeSocial = new JTextField();
+		txtFiledNomeSocial.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFiledNomeSocial.setColumns(10);
+		txtFiledNomeSocial.setBounds(395, 231, 138, 20);
+		contentPane.add(txtFiledNomeSocial);
 		
 		JLabel lblnomeQueAparece = new JLabel("(nome que aparecerá para o cliente):");
 		lblnomeQueAparece.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblnomeQueAparece.setBounds(210, 244, 180, 14);
 		contentPane.add(lblnomeQueAparece);
 		
-		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCpf.setBounds(210, 280, 46, 14);
-		contentPane.add(lblCpf);
+		JLabel lblCPF = new JLabel("CPF:");
+		lblCPF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCPF.setBounds(210, 280, 46, 14);
+		contentPane.add(lblCPF);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_2.setColumns(10);
-		textField_2.setBounds(265, 280, 133, 20);
-		contentPane.add(textField_2);
+		txtFieldCPF = new JTextField();
+		txtFieldCPF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldCPF.setColumns(10);
+		txtFieldCPF.setBounds(265, 280, 133, 20);
+		contentPane.add(txtFieldCPF);
 		
-		JLabel lblCnh = new JLabel("CNH:");
-		lblCnh.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCnh.setBounds(210, 320, 46, 14);
-		contentPane.add(lblCnh);
+		JLabel lblCNH = new JLabel("CNH:");
+		lblCNH.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCNH.setBounds(210, 320, 46, 14);
+		contentPane.add(lblCNH);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		textField_3.setBounds(265, 320, 133, 20);
-		contentPane.add(textField_3);
+		txtFieldCNH = new JTextField();
+		txtFieldCNH.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldCNH.setColumns(10);
+		txtFieldCNH.setBounds(265, 320, 133, 20);
+		contentPane.add(txtFieldCNH);
 		
 		JLabel lblEndereo = new JLabel("Endereço:");
 		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEndereo.setBounds(210, 396, 64, 14);
 		contentPane.add(lblEndereo);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		textField_4.setBounds(275, 396, 258, 20);
-		contentPane.add(textField_4);
+		txtFieldEndereco = new JTextField();
+		txtFieldEndereco.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldEndereco.setColumns(10);
+		txtFieldEndereco.setBounds(275, 396, 258, 20);
+		contentPane.add(txtFieldEndereco);
 		
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblBairro.setBounds(210, 421, 46, 14);
 		contentPane.add(lblBairro);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_5.setColumns(10);
-		textField_5.setBounds(275, 421, 123, 20);
-		contentPane.add(textField_5);
+		txtFieldBairro = new JTextField();
+		txtFieldBairro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldBairro.setColumns(10);
+		txtFieldBairro.setBounds(275, 421, 123, 20);
+		contentPane.add(txtFieldBairro);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCidade.setBounds(210, 446, 46, 14);
 		contentPane.add(lblCidade);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_6.setColumns(10);
-		textField_6.setBounds(275, 446, 143, 20);
-		contentPane.add(textField_6);
+		txtFieldCidade = new JTextField();
+		txtFieldCidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldCidade.setColumns(10);
+		txtFieldCidade.setBounds(275, 446, 143, 20);
+		contentPane.add(txtFieldCidade);
 		
-		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCep.setBounds(410, 421, 46, 14);
-		contentPane.add(lblCep);
+		JLabel lblCEP = new JLabel("CEP:");
+		lblCEP.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCEP.setBounds(410, 421, 46, 14);
+		contentPane.add(lblCEP);
 		
-		textField_7 = new JTextField();
-		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_7.setColumns(10);
-		textField_7.setBounds(442, 421, 91, 20);
-		contentPane.add(textField_7);
+		txtFieldCEP = new JTextField();
+		txtFieldCEP.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldCEP.setColumns(10);
+		txtFieldCEP.setBounds(442, 421, 91, 20);
+		contentPane.add(txtFieldCEP);
 		
-		JLabel lblUf = new JLabel("UF:");
-		lblUf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblUf.setBounds(428, 446, 46, 14);
-		contentPane.add(lblUf);
+		JLabel lblUF = new JLabel("UF:");
+		lblUF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblUF.setBounds(428, 446, 46, 14);
+		contentPane.add(lblUF);
 		
-		textField_8 = new JTextField();
-		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_8.setColumns(10);
-		textField_8.setBounds(460, 446, 73, 20);
-		contentPane.add(textField_8);
+		txtFieldUF = new JTextField();
+		txtFieldUF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldUF.setColumns(10);
+		txtFieldUF.setBounds(460, 446, 73, 20);
+		contentPane.add(txtFieldUF);
 		
-        JDateChooser dateChooser = new JDateChooser();
-        dateChooser.setDateFormatString("dd-MMM-YYYY");
-        dateChooser.setBounds(347, 360, 124, 20);
-        contentPane.add(dateChooser);
-        Date selectedDob = dateChooser.getDate();
+        JDateChooser dateChooserDdN = new JDateChooser();
+        dateChooserDdN.setDateFormatString("dd-MMM-YYYY");
+        dateChooserDdN.setBounds(347, 360, 124, 20);
+        contentPane.add(dateChooserDdN);
+        Date selectedDob = dateChooserDdN.getDate();
         
         JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
         lblDataDeNascimento.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -188,6 +190,18 @@ public class CadastroMotorista extends JFrame {
         contentPane.add(lblDataDeNascimento);
         
         JButton btnNewButton = new JButton("Cadastrar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		/* Ações do Botão Cadastrar Motorista
+        		Motorista(String n, String ns, String cpf, String cnh, String end, String dn)
+        		txtFieldNome.getText(),
+        		txtFiledNomeSocial.getText(),
+        		txtFieldCPF.getText(),
+        		txtFieldCNH.getText(),
+        		txtFieldEndereco.getText() + txtFieldBairro.getText() + txtFieldCidade.getText() + txtFieldUF.getText() + txtFieldCEP.getText(),
+        		*/
+        	}
+        });
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnNewButton.setBounds(337, 516, 89, 23);
         contentPane.add(btnNewButton);
