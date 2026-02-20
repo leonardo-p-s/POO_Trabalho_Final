@@ -41,34 +41,34 @@ public class ConfirmarRemocaoMot extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblConfirmarRemo = new JLabel("Confirmar Remoção do Motorista!");
-			lblConfirmarRemo.setBounds(80, 10, 274, 20);
-			lblConfirmarRemo.setVerticalAlignment(SwingConstants.BOTTOM);
-			lblConfirmarRemo.setHorizontalAlignment(SwingConstants.CENTER);
-			lblConfirmarRemo.setFont(new Font("Tahoma", Font.BOLD, 16));
-			contentPanel.add(lblConfirmarRemo);
+			JLabel lblTitulo = new JLabel("Confirmar Remoção do Motorista!");
+			lblTitulo.setBounds(80, 10, 274, 20);
+			lblTitulo.setVerticalAlignment(SwingConstants.BOTTOM);
+			lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+			contentPanel.add(lblTitulo);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("O motorista será removido permanentemente.");
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblNewLabel.setBounds(36, 75, 318, 20);
-			contentPanel.add(lblNewLabel);
+			JLabel lblMessagem1 = new JLabel("O motorista será removido permanentemente.");
+			lblMessagem1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblMessagem1.setBounds(36, 75, 318, 20);
+			contentPanel.add(lblMessagem1);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("Deseja confirmar?");
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblNewLabel_1.setBounds(36, 102, 205, 20);
-			contentPanel.add(lblNewLabel_1);
+			JLabel lblMenssagem2 = new JLabel("Deseja confirmar?");
+			lblMenssagem2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblMenssagem2.setBounds(36, 102, 205, 20);
+			contentPanel.add(lblMenssagem2);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Confirmar");
-				okButton.setActionCommand("Confirmar");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton okButtonConfirmar = new JButton("Confirmar");
+				okButtonConfirmar.setActionCommand("Confirmar");
+				buttonPane.add(okButtonConfirmar);
+				getRootPane().setDefaultButton(okButtonConfirmar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
