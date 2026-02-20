@@ -23,15 +23,17 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JTree;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastraUsuario {
 
 	private JFrame frmCadastroDeUsurio;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtFieldNomeUsuario;
+	private JTextField txtFieldEmailUsuario;
+	private JTextField txtFieldDDDUsuario;
+	private JTextField txtFieldTelefUsuario;
+	private JTextField txtFieldCPFUsuario;
 
 	/**
 	 * Launch the application.
@@ -67,106 +69,119 @@ public class CadastraUsuario {
 		frmCadastroDeUsurio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastroDeUsurio.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setForeground(new Color(0, 0, 0));
-		label.setBackground(new Color(0, 0, 0));
-		label.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_LogoF.png")));
-		label.setBounds(230, 11, 303, 76);
-		frmCadastroDeUsurio.getContentPane().add(label);
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setForeground(new Color(0, 0, 0));
+		labelLogo.setBackground(new Color(0, 0, 0));
+		labelLogo.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_LogoF.png")));
+		labelLogo.setBounds(230, 11, 303, 76);
+		frmCadastroDeUsurio.getContentPane().add(labelLogo);
 		
-		JLabel lblNewLabel_3 = new JLabel("Faça seu cadastro!");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_3.setBounds(282, 118, 200, 29);
-		frmCadastroDeUsurio.getContentPane().add(lblNewLabel_3);
+		JLabel lblTitulo = new JLabel("Faça seu cadastro!");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setBounds(282, 118, 200, 29);
+		frmCadastroDeUsurio.getContentPane().add(lblTitulo);
 		
-		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(213, 190, 46, 14);
-		frmCadastroDeUsurio.getContentPane().add(lblNewLabel);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(213, 190, 46, 14);
+		frmCadastroDeUsurio.getContentPane().add(lblNome);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setBounds(268, 190, 268, 20);
-		frmCadastroDeUsurio.getContentPane().add(textField);
-		textField.setColumns(10);
+		txtFieldNomeUsuario = new JTextField();
+		txtFieldNomeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldNomeUsuario.setBounds(268, 190, 268, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtFieldNomeUsuario);
+		txtFieldNomeUsuario.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEmail.setBounds(213, 230, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblEmail);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		textField_1.setBounds(268, 230, 268, 20);
-		frmCadastroDeUsurio.getContentPane().add(textField_1);
+		txtFieldEmailUsuario = new JTextField();
+		txtFieldEmailUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldEmailUsuario.setColumns(10);
+		txtFieldEmailUsuario.setBounds(268, 230, 268, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtFieldEmailUsuario);
 		
-		JLabel lblEmail_1 = new JLabel("Celular:");
-		lblEmail_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmail_1.setBounds(213, 270, 46, 14);
-		frmCadastroDeUsurio.getContentPane().add(lblEmail_1);
+		JLabel lblCelular = new JLabel("Celular:");
+		lblCelular.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCelular.setBounds(213, 270, 46, 14);
+		frmCadastroDeUsurio.getContentPane().add(lblCelular);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_2.setColumns(10);
-		textField_2.setBounds(268, 270, 23, 20);
-		frmCadastroDeUsurio.getContentPane().add(textField_2);
+		txtFieldDDDUsuario = new JTextField();
+		txtFieldDDDUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldDDDUsuario.setColumns(10);
+		txtFieldDDDUsuario.setBounds(268, 270, 23, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtFieldDDDUsuario);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		textField_3.setBounds(301, 270, 124, 20);
-		frmCadastroDeUsurio.getContentPane().add(textField_3);
+		txtFieldTelefUsuario = new JTextField();
+		txtFieldTelefUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldTelefUsuario.setColumns(10);
+		txtFieldTelefUsuario.setBounds(301, 270, 124, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtFieldTelefUsuario);
 		
-		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCpf.setBounds(213, 310, 46, 14);
-		frmCadastroDeUsurio.getContentPane().add(lblCpf);
+		JLabel lblCPF = new JLabel("CPF:");
+		lblCPF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCPF.setBounds(213, 310, 46, 14);
+		frmCadastroDeUsurio.getContentPane().add(lblCPF);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		textField_4.setBounds(268, 310, 124, 20);
-		frmCadastroDeUsurio.getContentPane().add(textField_4);
+		txtFieldCPFUsuario = new JTextField();
+		txtFieldCPFUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtFieldCPFUsuario.setColumns(10);
+		txtFieldCPFUsuario.setBounds(268, 310, 124, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtFieldCPFUsuario);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
 		lblDataDeNascimento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDataDeNascimento.setBounds(213, 350, 124, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblDataDeNascimento);
 		
+        JDateChooser FieldDataNascUsuario = new JDateChooser();
+        FieldDataNascUsuario.setDateFormatString("dd-MMM-YYYY");
+        FieldDataNascUsuario.setBounds(347, 350, 124, 20);
+        frmCadastroDeUsurio.getContentPane().add(FieldDataNascUsuario);
+        Date selectedDob = FieldDataNascUsuario.getDate();
+		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblSexo.setBounds(213, 390, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblSexo);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Feminino", "Masculino", "Não binário", "Outro"}));
-		comboBox.setBounds(268, 390, 90, 20);
-		frmCadastroDeUsurio.getContentPane().add(comboBox);
+		JComboBox comboBoxSexoUsuario = new JComboBox();
+		comboBoxSexoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		comboBoxSexoUsuario.setModel(new DefaultComboBoxModel(new String[] {"", "Feminino", "Masculino", "Não binário", "Outro"}));
+		comboBoxSexoUsuario.setBounds(268, 390, 90, 20);
+		frmCadastroDeUsurio.getContentPane().add(comboBoxSexoUsuario);
 		
 		JLabel lblFormaDePagamento = new JLabel("Forma de pagamento preferida:");
 		lblFormaDePagamento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblFormaDePagamento.setBounds(213, 430, 193, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblFormaDePagamento);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Cartão de Crédito", "PIX", "Dinheiro"}));
-		comboBox_1.setBounds(404, 430, 129, 20);
-		frmCadastroDeUsurio.getContentPane().add(comboBox_1);
+		JComboBox comboBoxFormaPagUsuario = new JComboBox();
+		comboBoxFormaPagUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		comboBoxFormaPagUsuario.setModel(new DefaultComboBoxModel(new String[] {"", "Cartão de Crédito", "PIX", "Dinheiro"}));
+		comboBoxFormaPagUsuario.setBounds(404, 430, 129, 20);
+		frmCadastroDeUsurio.getContentPane().add(comboBoxFormaPagUsuario);
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(337, 503, 89, 23);
-		frmCadastroDeUsurio.getContentPane().add(btnNewButton);
-		
-        JDateChooser dateChooser = new JDateChooser();
-        dateChooser.setDateFormatString("dd-MMM-YYYY");
-        dateChooser.setBounds(347, 350, 124, 20);
-        frmCadastroDeUsurio.getContentPane().add(dateChooser);
-        Date selectedDob = dateChooser.getDate();
-		
+		JButton btnCadastrarUsuario = new JButton("Cadastrar");
+		btnCadastrarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/* Ações do Botão Cadastrar Usuario
+				// String n, String cel, String cpf, String email, String dn, String sex, String fp
+				txtFieldNomeUsuario.getText(),
+				txtFieldDDDUsuario.getText() + txtFieldTelefUsuario.getText(),
+				txtFieldCPFUsuario.getText(),
+				txtFieldEmailUsuario.getText(),
+				selectedDob,
+				(String) comboBoxSexoUsuario.getSelectedItem(),
+				(String) comboBoxFormaPagUsuario.getSelectedItem(),
+				*/				
+			}
+		});
+		btnCadastrarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCadastrarUsuario.setBounds(337, 503, 89, 23);
+		frmCadastroDeUsurio.getContentPane().add(btnCadastrarUsuario);
 	}
 }
