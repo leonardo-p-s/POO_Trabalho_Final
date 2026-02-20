@@ -24,11 +24,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInicio {
 
 	private JFrame frmCadastro;
-	private JTextField txtSeuemailemailcombr;
+	private JTextField txtFieldUsuario;
 	private JPasswordField passwordField;
 
 	/**
@@ -65,69 +67,123 @@ public class TelaInicio {
 		frmCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastro.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Usuário:");
-		lblNewLabel.setBounds(489, 104, 46, 14);
-		frmCadastro.getContentPane().add(lblNewLabel);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_Pic1.png")));
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogo.setBounds(10, 11, 423, 674);
+		frmCadastro.getContentPane().add(lblLogo);
 		
-		txtSeuemailemailcombr = new JTextField();
-		txtSeuemailemailcombr.setToolTipText("email");
-		txtSeuemailemailcombr.setBounds(537, 101, 151, 20);
-		frmCadastro.getContentPane().add(txtSeuemailemailcombr);
-		txtSeuemailemailcombr.setColumns(10);
+		JLabel lblTitulo = new JLabel("Olá! Faça seu login!");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitulo.setBounds(509, 39, 200, 29);
+		frmCadastro.getContentPane().add(lblTitulo);
 		
-		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(489, 132, 46, 14);
-		frmCadastro.getContentPane().add(lblNewLabel_1);
+		JLabel lblUsuario = new JLabel("Usuário:");
+		lblUsuario.setBounds(489, 104, 46, 14);
+		frmCadastro.getContentPane().add(lblUsuario);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(562, 160, 89, 23);
-		frmCadastro.getContentPane().add(btnNewButton);
+		txtFieldUsuario = new JTextField();
+		txtFieldUsuario.setToolTipText("email");
+		txtFieldUsuario.setBounds(537, 101, 151, 20);
+		frmCadastro.getContentPane().add(txtFieldUsuario);
+		txtFieldUsuario.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_Pic1.png")));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(10, 11, 423, 674);
-		frmCadastro.getContentPane().add(lblNewLabel_2);
-		
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setBounds(489, 132, 46, 14);
+		frmCadastro.getContentPane().add(lblSenha);
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(537, 129, 151, 20);
 		frmCadastro.getContentPane().add(passwordField);
 		
-		JLabel lblNewLabel_3 = new JLabel("Olá! Faça seu login!");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_3.setBounds(509, 39, 200, 29);
-		frmCadastro.getContentPane().add(lblNewLabel_3);
-		
-		JButton btnNewButton_1 = new JButton("Criar Conta");
-		btnNewButton_1.setBounds(562, 264, 89, 23);
-		frmCadastro.getContentPane().add(btnNewButton_1);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(470, 240, 85, 1);
-		frmCadastro.getContentPane().add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(665, 240, 85, 1);
-		frmCadastro.getContentPane().add(separator_1);
-		
-		JLabel lblNewLabel_4 = new JLabel("ou cadastrar usuário");
-		lblNewLabel_4.setBounds(561, 233, 99, 14);
-		frmCadastro.getContentPane().add(lblNewLabel_4);
-		
-		JButton btnNewButton_1_1 = new JButton("Cadastrar como motorista");
-		btnNewButton_1_1.setBounds(534, 354, 157, 23);
-		frmCadastro.getContentPane().add(btnNewButton_1_1);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(470, 328, 75, 1);
-		frmCadastro.getContentPane().add(separator_2);
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*Ações botão Login
+				Verifica se Login Existe
+					verifica se é Motorista
+						Pagina Motorista
+					verifica se é Usuário
+						Página Usuário
+				txtFieldUsuario.getText()
+				*/
+			}
+		});
+		btnLogin.setBounds(562, 160, 89, 23);
+		frmCadastro.getContentPane().add(btnLogin);
 		
 		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBounds(675, 328, 75, 1);
+		separator_1_1.setBounds(470, 240, 85, 1);
 		frmCadastro.getContentPane().add(separator_1_1);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("ou trabalhe com a gente");
-		lblNewLabel_4_1.setBounds(550, 321, 117, 14);
-		frmCadastro.getContentPane().add(lblNewLabel_4_1);
+		JLabel lblQuebraCadastUsu = new JLabel("ou cadastrar usuário");
+		lblQuebraCadastUsu.setBounds(561, 233, 99, 14);
+		frmCadastro.getContentPane().add(lblQuebraCadastUsu);
+		
+		JSeparator separator_1_2 = new JSeparator();
+		separator_1_2.setBounds(665, 240, 85, 1);
+		frmCadastro.getContentPane().add(separator_1_2);
+		
+		JButton btnCriaContaUsuario = new JButton("Criar Conta");
+		btnCriaContaUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				Ações Botão Cria Conta Usuário
+					Verifica se Usuário foi teclado
+						Página Cadastrar Usuário
+					Senão
+						Erro, Pede que entre com usuário e senha
+				txtFieldUsuario.getText()
+				*/
+			}
+		});
+		btnCriaContaUsuario.setBounds(562, 264, 89, 23);
+		frmCadastro.getContentPane().add(btnCriaContaUsuario);
+		
+		JSeparator separator_2_1 = new JSeparator();
+		separator_2_1.setBounds(470, 328, 75, 1);
+		frmCadastro.getContentPane().add(separator_2_1);
+		
+		JLabel lblQuebraCadastMoto = new JLabel("ou trabalhe com a gente");
+		lblQuebraCadastMoto.setBounds(550, 321, 117, 14);
+		frmCadastro.getContentPane().add(lblQuebraCadastMoto);
+		
+		JSeparator separator_2_2 = new JSeparator();
+		separator_2_2.setBounds(675, 328, 75, 1);
+		frmCadastro.getContentPane().add(separator_2_2);
+		
+		JButton btnCadastrarMotorista = new JButton("Cadastrar como motorista");
+		btnCadastrarMotorista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				Ações Botão Cadastrar Motorista
+					Verifica se Usuário foi teclado
+						Página Cadastrar Motorista
+					Senão
+						Erro, Pede que entre com usuário e senha
+				txtFieldUsuario.getText()
+				*/
+			}
+		});
+		btnCadastrarMotorista.setBounds(534, 354, 157, 23);
+		frmCadastro.getContentPane().add(btnCadastrarMotorista);
+		
+		JSeparator separator_3_1 = new JSeparator();
+		separator_3_1.setBounds(470, 426, 75, 1);
+		frmCadastro.getContentPane().add(separator_3_1);
+
+		JLabel lblAcessoRestrito = new JLabel("acesso restrito UberLand");
+		lblAcessoRestrito.setBounds(550, 419, 123, 14);
+		frmCadastro.getContentPane().add(lblAcessoRestrito);
+		
+		JSeparator separator_3_2 = new JSeparator();
+		separator_3_2.setBounds(675, 426, 75, 1);
+		frmCadastro.getContentPane().add(separator_3_2);
+
+		JButton btnGerenciar = new JButton("Gerenciar");
+		btnGerenciar.setBounds(562, 469, 89, 23);
+		frmCadastro.getContentPane().add(btnGerenciar);
+
+		
 	}
 }
