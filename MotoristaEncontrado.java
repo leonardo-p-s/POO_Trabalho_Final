@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MotoristaEncontrado extends JDialog {
 
@@ -113,12 +115,22 @@ public class MotoristaEncontrado extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton removerButton = new JButton("Remover Motorista");
+				removerButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ConfirmarRemocaoMot.main(null);
+					}
+				});
 				removerButton.setActionCommand("Remover Motorista");
 				buttonPane.add(removerButton);
 				getRootPane().setDefaultButton(removerButton);
 			}
 			{
 				JButton cancelButton = new JButton("Fechar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false); 
+					}
+				});
 				cancelButton.setActionCommand("Fechar");
 				buttonPane.add(cancelButton);
 			}
