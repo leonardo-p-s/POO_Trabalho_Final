@@ -77,13 +77,13 @@ public class CadastraVeiculo extends JFrame {
 		
 		JLabel lblMarca = new JLabel("Marca:");
 		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMarca.setBounds(210, 181, 46, 14);
+		lblMarca.setBounds(189, 181, 46, 14);
 		contentPane.add(lblMarca);
 		
 		txtFieldMarca = new JTextField();
 		txtFieldMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldMarca.setColumns(10);
-		txtFieldMarca.setBounds(265, 181, 134, 20);
+		txtFieldMarca.setBounds(235, 181, 134, 20);
 		contentPane.add(txtFieldMarca);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
@@ -94,21 +94,21 @@ public class CadastraVeiculo extends JFrame {
 		txtFieldModelo = new JTextField();
 		txtFieldModelo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldModelo.setColumns(10);
-		txtFieldModelo.setBounds(464, 181, 116, 20);
+		txtFieldModelo.setBounds(459, 181, 116, 20);
 		contentPane.add(txtFieldModelo);
 
 		JLabel lblAno = new JLabel("Ano:");
 		lblAno.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAno.setBounds(210, 212, 39, 14);
+		lblAno.setBounds(189, 212, 39, 14);
 		contentPane.add(lblAno);
 		
 		JYearChooser yearChooser = new JYearChooser();
-		yearChooser.setBounds(240, 212, 50, 20);
+		yearChooser.setBounds(225, 212, 50, 20);
 		contentPane.add(yearChooser);
 		
 		JLabel lblPlaca = new JLabel("Placa:");
 		lblPlaca.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPlaca.setBounds(327, 212, 46, 14);
+		lblPlaca.setBounds(325, 212, 46, 14);
 		contentPane.add(lblPlaca);
 		
 		txtFieldPlaca = new JTextField();
@@ -119,13 +119,13 @@ public class CadastraVeiculo extends JFrame {
 		
 		JLabel lblVinnroChassi = new JLabel("VIN (nro. chassi):");
 		lblVinnroChassi.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblVinnroChassi.setBounds(210, 243, 105, 14);
+		lblVinnroChassi.setBounds(189, 243, 105, 14);
 		contentPane.add(lblVinnroChassi);
 		
 		txtFieldVIN = new JTextField();
 		txtFieldVIN.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldVIN.setColumns(10);
-		txtFieldVIN.setBounds(321, 243, 174, 20);
+		txtFieldVIN.setBounds(300, 243, 174, 20);
 		contentPane.add(txtFieldVIN);
 		
 		JLabel lblCor = new JLabel("Cor:");
@@ -136,19 +136,30 @@ public class CadastraVeiculo extends JFrame {
 		txtFiledCor = new JTextField();
 		txtFiledCor.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFiledCor.setColumns(10);
-		txtFiledCor.setBounds(503, 212, 77, 20);
+		txtFiledCor.setBounds(498, 212, 77, 20);
 		contentPane.add(txtFiledCor);
 		
 		JLabel lblCapacidadeDePassageiros = new JLabel("Capacidade de Passageiros:");
 		lblCapacidadeDePassageiros.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCapacidadeDePassageiros.setBounds(210, 276, 163, 14);
+		lblCapacidadeDePassageiros.setBounds(189, 276, 163, 18);
 		contentPane.add(lblCapacidadeDePassageiros);
 		
 		JComboBox comboBoxCapacPass = new JComboBox();
 		comboBoxCapacPass.setModel(new DefaultComboBoxModel(new String[] {"", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
 		comboBoxCapacPass.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		comboBoxCapacPass.setBounds(383, 274, 46, 20);
+		comboBoxCapacPass.setBounds(355, 274, 46, 20);
 		contentPane.add(comboBoxCapacPass);
+		
+		JLabel lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCategoria.setBounds(415, 276, 66, 18);
+		contentPane.add(lblCategoria);
+		
+		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"UberX", "UberConfort", "UberBlack"}));
+		comboBoxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		comboBoxCategoria.setBounds(480, 274, 95, 20);
+		contentPane.add(comboBoxCategoria);
 		
 		
 		JPanel panel = new JPanel();
@@ -203,11 +214,12 @@ public class CadastraVeiculo extends JFrame {
 		comboBoxCapacMalas.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4", "5", "6", "7", "8"}));
 		panel.add(comboBoxCapacMalas);
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
 				 * Ações do botão Cadastrar Veículo
+				(String) comboBoxCategoria.getSelectedItem(),
 				Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap
 				VeicUberX(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ac, boolean cb)
 				VeicUberConfort(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ee, boolean br, boolean acdz)
@@ -232,9 +244,20 @@ public class CadastraVeiculo extends JFrame {
 				*/
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(337, 506, 89, 23);
-		contentPane.add(btnNewButton);
-
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCadastrar.setBounds(332, 506, 100, 23);
+		contentPane.add(btnCadastrar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false); 
+				TelaMotorista.main(null);
+			}
+		});
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCancelar.setBounds(491, 506, 89, 23);
+		contentPane.add(btnCancelar);
+		
 	}
 }
