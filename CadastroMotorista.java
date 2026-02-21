@@ -189,8 +189,8 @@ public class CadastroMotorista extends JFrame {
         lblDataDeNascimento.setBounds(210, 360, 124, 14);
         contentPane.add(lblDataDeNascimento);
         
-        JButton btnNewButton = new JButton("Cadastrar");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton btnCadastrar = new JButton("Cadastrar");
+        btnCadastrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		/* Ações do Botão Cadastrar Motorista
         		Motorista(String n, String ns, String cpf, String cnh, String end, String dn)
@@ -202,9 +202,21 @@ public class CadastroMotorista extends JFrame {
         		*/
         	}
         });
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        btnNewButton.setBounds(337, 516, 89, 23);
-        contentPane.add(btnNewButton);
+        btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnCadastrar.setBounds(210, 516, 100, 23);
+        contentPane.add(btnCadastrar);
+        
+        JButton btnSair = new JButton("Sair");
+        btnSair.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		CadastroMotorista.this.setVisible(false); 
+				TelaInicio.main(null);
+				//frmLogin.setVisible(true);
+        	}
+        });
+        btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnSair.setBounds(444, 517, 89, 23);
+        contentPane.add(btnSair);
 
 	}
 
