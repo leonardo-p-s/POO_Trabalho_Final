@@ -105,7 +105,8 @@ public class CadastrarCorrida extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				/* Ações do Botão Pedir (criar) Corrida
 				 * Usuario s, String or, String dest, String d, String h
-				Corrida c = new Corrida(UsuarioAtual, txtFieldOrigem.getText(), txtFieldDestino.getText(), LocalDate.now(), LocalTime.now());
+				Usuario user = (Usuario) Sessao.getInstancia().getUser();
+				Corrida c = new Corrida(user, txtFieldOrigem.getText(), txtFieldDestino.getText(), LocalDate.now(), LocalTime.now());
             	Corridas.criar(c);???
             	*/
 			}
@@ -113,6 +114,17 @@ public class CadastrarCorrida extends JFrame {
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnChamar.setBounds(337, 272, 89, 23);
 		contentPane.add(btnChamar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false); 
+				TelaUsuario.main(null);
+			}
+		});
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCancelar.setBounds(444, 273, 89, 23);
+		contentPane.add(btnCancelar);
 	}
 
 }
