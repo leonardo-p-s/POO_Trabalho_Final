@@ -1,9 +1,13 @@
 
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import java.util.ArrayList;
 
 public class Motorista {
 	// Attributes
+	private String Login;
 	private String Nome;
 	private String NomeSocial;
 	private String CPF;
@@ -31,6 +35,8 @@ public class Motorista {
 	}
 	
 	// Getters and Setters
+	public String getLogin() {return Login;}
+	public void setLogin(String login) {Login = login;}
 	public String getNome() {return Nome;}
 	public void setNome(String nome) { 
 		if((nome.length() > 1) && (nome.matches("^[\\p{L} ]+$")))
@@ -41,8 +47,8 @@ public class Motorista {
 	public void setCPF(String cpf) {
         if (ValidaCPF.isCPF(cpf) == true)
         	CPF = cpf;
-        //else 
-        	//Erro, CPF invalido !!! ???;
+        else 
+        	JOptionPane.showMessageDialog(null,  "CPF inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
 	public String getCNH() {return CNH;}
 	public void setCNH(String cNH) {CNH = cNH;}
@@ -60,7 +66,7 @@ public class Motorista {
 	//public void setVeiculos(List<Veiculo> veiculos) {Veiculos = veiculos;}
 	public int getNroCorridasAval() {return NroCorridasAval;}
 	public void setNroCorridasAval(int nroCorridasAval) {NroCorridasAval = nroCorridasAval;}
-	
+
 
 	// Methods
 	public void Ativa() {setAtivo(true);}
