@@ -11,6 +11,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -79,7 +81,7 @@ public class TelaInicio {
 		frmCadastro.getContentPane().add(lblTitulo);
 		
 		JLabel lblUsuario = new JLabel("Usuário:");
-		lblUsuario.setBounds(489, 104, 46, 14);
+		lblUsuario.setBounds(485, 104, 50, 14);
 		frmCadastro.getContentPane().add(lblUsuario);
 		
 		txtFieldUsuario = new JTextField();
@@ -99,6 +101,9 @@ public class TelaInicio {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String login = txtFieldUsuario.getText();
+				if(login.isEmpty())
+					JOptionPane.showMessageDialog(null,  "Favor digitar um login!", "Login vazio", JOptionPane.WARNING_MESSAGE);
 				/*Ações botão Login
 				Verifica se Login Existe
 					verifica se é Motorista
@@ -107,21 +112,23 @@ public class TelaInicio {
 						Página Usuário
 				txtFieldUsuario.getText()
 				*/
+				JOptionPane.showMessageDialog(null,  "Usuário não encontrado!", "Atenção", JOptionPane.WARNING_MESSAGE);
 			}
 		});
-		btnLogin.setBounds(562, 160, 89, 23);
+		btnLogin.setBounds(568, 160, 89, 23);
 		frmCadastro.getContentPane().add(btnLogin);
 		
 		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBounds(470, 240, 85, 1);
+		separator_1_1.setBounds(467, 246, 80, 1);
 		frmCadastro.getContentPane().add(separator_1_1);
 		
 		JLabel lblQuebraCadastUsu = new JLabel("ou cadastrar usuário");
-		lblQuebraCadastUsu.setBounds(561, 233, 99, 14);
+		lblQuebraCadastUsu.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuebraCadastUsu.setBounds(552, 239, 120, 14);
 		frmCadastro.getContentPane().add(lblQuebraCadastUsu);
 		
 		JSeparator separator_1_2 = new JSeparator();
-		separator_1_2.setBounds(665, 240, 85, 1);
+		separator_1_2.setBounds(675, 246, 80, 1);
 		frmCadastro.getContentPane().add(separator_1_2);
 		
 		JButton btnCriaContaUsuario = new JButton("Criar Conta");
@@ -137,19 +144,20 @@ public class TelaInicio {
 				*/
 			}
 		});
-		btnCriaContaUsuario.setBounds(562, 264, 89, 23);
+		btnCriaContaUsuario.setBounds(562, 264, 100, 23);
 		frmCadastro.getContentPane().add(btnCriaContaUsuario);
 		
 		JSeparator separator_2_1 = new JSeparator();
-		separator_2_1.setBounds(470, 328, 75, 1);
+		separator_2_1.setBounds(467, 334, 70, 1);
 		frmCadastro.getContentPane().add(separator_2_1);
 		
 		JLabel lblQuebraCadastMoto = new JLabel("ou trabalhe com a gente");
-		lblQuebraCadastMoto.setBounds(550, 321, 117, 14);
+		lblQuebraCadastMoto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuebraCadastMoto.setBounds(542, 327, 140, 14);
 		frmCadastro.getContentPane().add(lblQuebraCadastMoto);
 		
 		JSeparator separator_2_2 = new JSeparator();
-		separator_2_2.setBounds(675, 328, 75, 1);
+		separator_2_2.setBounds(685, 334, 70, 1);
 		frmCadastro.getContentPane().add(separator_2_2);
 		
 		JButton btnCadastrarMotorista = new JButton("Cadastrar como motorista");
@@ -165,23 +173,24 @@ public class TelaInicio {
 				*/
 			}
 		});
-		btnCadastrarMotorista.setBounds(534, 354, 157, 23);
+		btnCadastrarMotorista.setBounds(517, 354, 190, 23);
 		frmCadastro.getContentPane().add(btnCadastrarMotorista);
 		
 		JSeparator separator_3_1 = new JSeparator();
-		separator_3_1.setBounds(470, 426, 75, 1);
+		separator_3_1.setBounds(467, 438, 65, 1);
 		frmCadastro.getContentPane().add(separator_3_1);
 
 		JLabel lblAcessoRestrito = new JLabel("acesso restrito UberLand");
-		lblAcessoRestrito.setBounds(550, 419, 123, 14);
+		lblAcessoRestrito.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAcessoRestrito.setBounds(540, 431, 145, 14);
 		frmCadastro.getContentPane().add(lblAcessoRestrito);
 		
 		JSeparator separator_3_2 = new JSeparator();
-		separator_3_2.setBounds(675, 426, 75, 1);
+		separator_3_2.setBounds(690, 438, 65, 1);
 		frmCadastro.getContentPane().add(separator_3_2);
 
 		JButton btnGerenciar = new JButton("Gerenciar");
-		btnGerenciar.setBounds(562, 469, 89, 23);
+		btnGerenciar.setBounds(560, 450, 105, 23);
 		frmCadastro.getContentPane().add(btnGerenciar);
 
 		
