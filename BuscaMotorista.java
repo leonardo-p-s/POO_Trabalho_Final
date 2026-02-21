@@ -126,6 +126,17 @@ public class BuscaMotorista extends JFrame {
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBuscar.setBounds(337, 366, 89, 23);
 		contentPane.add(btnBuscar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuscaMotorista.this.setVisible(false); 
+				Gerenciar.main(null);
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnVoltar.setBounds(444, 367, 89, 23);
+		contentPane.add(btnVoltar);
 
 	}
 }
