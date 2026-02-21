@@ -6,10 +6,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConfirmarRemocaoMot extends JDialog {
 
@@ -66,12 +70,24 @@ public class ConfirmarRemocaoMot extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButtonConfirmar = new JButton("Confirmar");
+				okButtonConfirmar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						// Remove Motorista
+						JOptionPane.showMessageDialog(null, "Motorista removido com sucesso!", "Motorista Removido", JOptionPane.INFORMATION_MESSAGE);
+						setVisible(false); 
+					}
+				});
 				okButtonConfirmar.setActionCommand("Confirmar");
 				buttonPane.add(okButtonConfirmar);
 				getRootPane().setDefaultButton(okButtonConfirmar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
