@@ -1,6 +1,8 @@
+import javax.swing.JOptionPane;
 
 public class Usuario {
 	// Attributes
+	private String Login;
 	private String Nome;
 	private String NroCelular;
 	private String CPF;
@@ -32,6 +34,7 @@ public class Usuario {
 	}
 	
 	// Getters
+	public String getLogin() {return Login;}
 	public String getNome() {return Nome;}
 	public String getNroCelular() {return NroCelular;}
 	public String getCPF() {return CPF;}
@@ -45,13 +48,17 @@ public class Usuario {
 	public int getNroCorridasAval() {return NroCorridasAval;}
 
 	// Setters
+	public void setLogin(String login) {Login = login;}
 	public void setNome(String nome) { 
 		if((nome.length() > 1) && (nome.matches("^[\\p{L} ]+$")))
 			Nome = nome;}
 	public void setNroCelular(String nroCelular) {NroCelular = nroCelular;}
 	public void setCPF(String cpf) {
 		if (ValidaCPF.isCPF(cpf))
-			CPF = cpf;}
+			CPF = cpf;
+		else 
+        	JOptionPane.showMessageDialog(null,  "CPF inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }
 	public void setEmail(String email) {this.email = email;}
 	public void setDataNasc(String dataNasc) {DataNasc = dataNasc;}
 	public void setSexo(String sexo) {Sexo = sexo;}
