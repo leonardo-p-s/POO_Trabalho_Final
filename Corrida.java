@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Corrida {
+public class Corrida implements Serializable{
 	// Attributes
 	private Usuario Solicitante;
 	private String Origem;
@@ -131,6 +132,18 @@ public class Corrida {
 	}
 	public void RegistraAvalPassageiro(int nota) {
 		Solicitante.AdicionaAval(nota);
+	}
+
+	@Override
+	public String toString() {
+		return "Corrida [Solicitante=" + Solicitante + ", Origem=" + Origem + ", Destino=" + Destino + ", DataSolicit="
+				+ DataSolicit + ", HoraSolicit=" + HoraSolicit + ", veiculo=" + veiculo + ", motorista=" + motorista
+				+ ", HoraChegadaMotOrigem=" + HoraChegadaMotOrigem + ", HoraFimCorrida=" + HoraFimCorrida
+				+ ", LocalFimCorrida=" + LocalFimCorrida + ", DuracaoViagem=" + DuracaoViagem + ", DistanciaPercorrida="
+				+ DistanciaPercorrida + ", ValorTotalViagem=" + ValorTotalViagem + ", ValorExtra=" + ValorExtra
+				+ ", ValorUberL=" + ValorUberL + ", ValorMotorista=" + ValorMotorista + ", StatusCorrida="
+				+ StatusCorrida + ", StatusFinal=" + StatusFinal + ", CanceladoPor=" + CanceladoPor
+				+ ", FormaPagamento=" + FormaPagamento + "]";
 	}
 
 }
