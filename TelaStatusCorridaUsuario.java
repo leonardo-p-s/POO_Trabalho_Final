@@ -69,6 +69,7 @@ public class TelaStatusCorridaUsuario extends JFrame {
 				int resp = JOptionPane.showConfirmDialog(null,  "Deseja realmente Cancelar a Corrida?", "Confirmar", JOptionPane.YES_NO_OPTION);
 				if(resp == JOptionPane.YES_OPTION) {
 					// Cancelar corrida
+					JOptionPane.showMessageDialog(null, "Solicitação de cancelamento de corrida enviada!", "Corrida Cancelada", JOptionPane.INFORMATION_MESSAGE);
 				}
 					
 			}
