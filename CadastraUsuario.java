@@ -181,7 +181,19 @@ public class CadastraUsuario {
 			}
 		});
 		btnCadastrarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCadastrarUsuario.setBounds(337, 503, 89, 23);
+		btnCadastrarUsuario.setBounds(213, 504, 100, 23);
 		frmCadastroDeUsurio.getContentPane().add(btnCadastrarUsuario);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCadastroDeUsurio.setVisible(false); 
+				TelaInicio.main(null);
+				//frmLogin.setVisible(true);
+			}
+		});
+		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSair.setBounds(433, 504, 100, 23);
+		frmCadastroDeUsurio.getContentPane().add(btnSair);
 	}
 }
