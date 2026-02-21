@@ -1,11 +1,12 @@
 
 import java.util.List;
+import java.util.ArrayList;
+import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
-import java.util.ArrayList;
 
-public class Motorista {
+public class Motorista implements Serializable{
 	// Attributes
 	private String Login;
 	private String Nome;
@@ -86,5 +87,13 @@ public class Motorista {
 		setNroCorridasAval(NroCorridasAval += 1);
 		NotaTotal += Nota;
 		setNotaMediaAval(NotaTotal / NroCorridasAval);		// Atualiza nota média
+	}
+
+	@Override
+	public String toString() {
+		return "Motorista [Login=" + Login + ", Nome=" + Nome + ", NomeSocial=" + NomeSocial + ", CPF=" + CPF + ", CNH="
+				+ CNH + ", Endereco=" + Endereco + ", DataNasc=" + DataNasc + ", Ativo=" + Ativo + ", Veiculos="
+				+ Veiculos + ", NroCorridas=" + NroCorridas + ", NroCorridasAval=" + NroCorridasAval
+				+ ", NotaMediaAval=" + NotaMediaAval + "]";
 	}
 }
