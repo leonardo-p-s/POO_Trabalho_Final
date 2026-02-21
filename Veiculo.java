@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Veiculo {
+public abstract class Veiculo implements Serializable {
 	// Attributes
 	private Motorista Condutor;
 	private String Marca;
@@ -59,7 +60,14 @@ public class Veiculo {
 		Condutor.Ativa();				// O motorista é ativado quando um de seus veículos é ativado
 		}
 	public void Desativa() {setAtivo(false);}
-	public float CalculaCustoViagem(float DistKm) {return 0f;}
+	public abstract float CalculaCustoViagem(float DistKm);
+
+	@Override
+	public String toString() {
+		return "Veiculo [Condutor=" + Condutor + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Ano=" + Ano + ", Placa="
+				+ Placa + ", VIN=" + VIN + ", Cor=" + Cor + ", CapacidPass=" + CapacidPass + ", Ativo=" + Ativo
+				+ ", Status=" + Status + ", Categoria=" + Categoria + "]";
+	}
 }
 	// Requisito Extra 1: 	todo motorista e todo veículo estão desativados no momento do cadastro. 
 	// 						Quando um de seus veículos é ativado no sistema pela UberLand, o motorista é ativado atomaticamente.
