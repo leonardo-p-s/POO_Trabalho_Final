@@ -1,6 +1,8 @@
+import java.io.Serializable;
+
 import javax.swing.JOptionPane;
 
-public class Usuario {
+public class Usuario implements Serializable {
 	// Attributes
 	private String Login;
 	private String Nome;
@@ -77,6 +79,13 @@ public class Usuario {
 		setNroCorridasAval(NroCorridasAval += 1);
 		NotaTotal += Nota;
 		setNotaMediaAval(NotaTotal / NroCorridasAval);		// Atualiza nota média
+	}
+	@Override
+	public String toString() {
+		return "Usuario [Login=" + Login + ", Nome=" + Nome + ", NroCelular=" + NroCelular + ", CPF=" + CPF + ", email="
+				+ email + ", DataNasc=" + DataNasc + ", Sexo=" + Sexo + ", FormaPagPref=" + FormaPagPref
+				+ ", NroCorridas=" + NroCorridas + ", NroCorridasAval=" + NroCorridasAval + ", NotaMediaAval="
+				+ NotaMediaAval + "]";
 	}
 
 }
