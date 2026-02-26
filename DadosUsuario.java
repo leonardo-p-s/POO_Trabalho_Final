@@ -14,6 +14,24 @@ public class DadosUsuario {
         System.out.println("Usuário adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
 
+   public boolean fazerLoginUsuario(String Login) {
+        for (int i = 0; i < vetorUsuarios.size(); i++) { // percorremos o vetor de usuários do início ao fim...
+            Usuario u = vetorUsuarios.get(i); // a cada execução do comando de laço, um usuário diferente será testado, e "identificamos" ele pelo índice no vetor
+
+            if (u.getLogin().equals(Login)) { // se o login e a senha do usuário forem iguais aos dados inseridos para login...
+                Sessao.getInstancia().setUser(u); // o usuário logado passa a ser o usuário que possui os dados inseridos para login, ou seja, o usuário que se deseja logar no sistema
+                System.out.println("Login de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o login deu certo
+                return true; // retornamos verdadeiro, ou seja, o login foi bem sucedido!
+            }
+        }
+
+        return false; // caso contrário, e nenhum usuário seja encontrado, retornamos falso, ou seja, o login falhou!
+   }
+
+   public void fazerLogoutUsuario() {
+        Sessao.getInstancia().setUser(null); // o usuário logado passa a ser nulo, ou seja, nenhum usuário estará logado no sistema
+        System.out.println("Logout de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o logout deu certo
+    }
     public Usuario buscarUsuario(String cpf) {
         for (int i = 0; i < vetorUsuarios.size(); i++) { // percorrendo o vetor até o seu tamanho total...
 
@@ -61,4 +79,14 @@ public class DadosUsuario {
             vetorUsuarios = (ArrayList<Usuario>) obj;
         }
     }
+
+    public void lerArquivoUsuarios(){
+        Object obj = Persist.recuperar("usuarios.dat");
+
+        if (obj != null) {
+            vetorUsuarios = (ArrayList<Usuario>) obj;
+        }
+    }
+
+
 }

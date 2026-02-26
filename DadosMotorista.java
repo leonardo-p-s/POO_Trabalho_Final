@@ -14,6 +14,21 @@ public class DadosMotorista {
         System.out.println("Motorista adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
 
+    public boolean fazerLoginMotorista(String Login) {
+        for (int i = 0; i < vetorMotoristas.size(); i++) { // percorremos o vetor de motoristas do início ao fim...
+            Motorista m = vetorMotoristas.get(i); // a cada execução do comando de laço, um motorista diferente será testado, e "identificamos" ele pelo índice no vetor
+
+            if (m.getLogin().equals(Login)) { // se o login e a senha do motorista forem iguais aos dados inseridos para login...
+                Sessao.getInstancia().setUser(m); // o motorista logado passa a ser o motorista que possui os dados inseridos para login, ou seja, o motorista que se deseja logar no sistema
+                System.out.println("Login de motorista efetuado com sucesso!"); // exibimos uma mensagem dizendo que o login deu certo
+                return true; // retornamos verdadeiro, ou seja, o login foi bem sucedido!
+            }
+
+        }
+
+        return false; // caso contrário, e nenhum motorista seja encontrado, retornamos falso, ou seja, o login falhou!
+    }
+
     public Motorista buscarMotorista (String cnh){
 
         for(int i = 0; i < vetorMotoristas.size(); i++){ // percorremos o vetor de motoristas do início ao fim...
