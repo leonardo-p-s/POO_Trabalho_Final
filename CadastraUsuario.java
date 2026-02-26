@@ -25,6 +25,7 @@ import javax.swing.JTree;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class CadastraUsuario {
 
@@ -34,6 +35,7 @@ public class CadastraUsuario {
 	private JTextField txtFieldDDDUsuario;
 	private JTextField txtFieldTelefUsuario;
 	private JTextField txtFieldCPFUsuario;
+	private JTextField txtLogin;
 
 	/**
 	 * Launch the application.
@@ -82,87 +84,107 @@ public class CadastraUsuario {
 		lblTitulo.setBounds(282, 118, 200, 29);
 		frmCadastroDeUsurio.getContentPane().add(lblTitulo);
 		
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLogin.setBounds(213, 159, 46, 18);
+		frmCadastroDeUsurio.getContentPane().add(lblLogin);
+		
+		txtLogin = new JTextField();
+		txtLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtLogin.setColumns(10);
+		txtLogin.setBounds(268, 158, 120, 20);
+		frmCadastroDeUsurio.getContentPane().add(txtLogin);
+		
+		JLabel lblseuNovoLogin = new JLabel("(Seu novo Login aqui)");
+		lblseuNovoLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblseuNovoLogin.setBounds(395, 159, 140, 18);
+		frmCadastroDeUsurio.getContentPane().add(lblseuNovoLogin);
+		
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setBounds(230, 195, 290, 1);
+		frmCadastroDeUsurio.getContentPane().add(separator_1_1);
+		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNome.setBounds(213, 190, 46, 14);
+		lblNome.setBounds(213, 215, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblNome);
 		
 		txtFieldNomeUsuario = new JTextField();
 		txtFieldNomeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtFieldNomeUsuario.setBounds(268, 190, 268, 20);
+		txtFieldNomeUsuario.setBounds(268, 215, 268, 20);
 		frmCadastroDeUsurio.getContentPane().add(txtFieldNomeUsuario);
 		txtFieldNomeUsuario.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmail.setBounds(213, 230, 46, 14);
+		lblEmail.setBounds(213, 255, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblEmail);
 		
 		txtFieldEmailUsuario = new JTextField();
 		txtFieldEmailUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldEmailUsuario.setColumns(10);
-		txtFieldEmailUsuario.setBounds(268, 230, 268, 20);
+		txtFieldEmailUsuario.setBounds(268, 255, 268, 20);
 		frmCadastroDeUsurio.getContentPane().add(txtFieldEmailUsuario);
 		
 		JLabel lblCelular = new JLabel("Celular:");
 		lblCelular.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCelular.setBounds(213, 270, 46, 14);
+		lblCelular.setBounds(213, 295, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblCelular);
 		
 		txtFieldDDDUsuario = new JTextField();
 		txtFieldDDDUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldDDDUsuario.setColumns(10);
-		txtFieldDDDUsuario.setBounds(268, 270, 23, 20);
+		txtFieldDDDUsuario.setBounds(268, 295, 23, 20);
 		frmCadastroDeUsurio.getContentPane().add(txtFieldDDDUsuario);
 		
 		txtFieldTelefUsuario = new JTextField();
 		txtFieldTelefUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldTelefUsuario.setColumns(10);
-		txtFieldTelefUsuario.setBounds(301, 270, 124, 20);
+		txtFieldTelefUsuario.setBounds(301, 295, 124, 20);
 		frmCadastroDeUsurio.getContentPane().add(txtFieldTelefUsuario);
 		
 		JLabel lblCPF = new JLabel("CPF:");
 		lblCPF.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCPF.setBounds(213, 310, 46, 14);
+		lblCPF.setBounds(213, 335, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblCPF);
 		
 		txtFieldCPFUsuario = new JTextField();
 		txtFieldCPFUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtFieldCPFUsuario.setColumns(10);
-		txtFieldCPFUsuario.setBounds(268, 310, 124, 20);
+		txtFieldCPFUsuario.setBounds(268, 335, 124, 20);
 		frmCadastroDeUsurio.getContentPane().add(txtFieldCPFUsuario);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
 		lblDataDeNascimento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDataDeNascimento.setBounds(213, 350, 124, 14);
+		lblDataDeNascimento.setBounds(213, 375, 124, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblDataDeNascimento);
 		
         JDateChooser FieldDataNascUsuario = new JDateChooser();
         FieldDataNascUsuario.setDateFormatString("dd-MMM-YYYY");
-        FieldDataNascUsuario.setBounds(347, 350, 124, 20);
+        FieldDataNascUsuario.setBounds(347, 375, 124, 20);
         frmCadastroDeUsurio.getContentPane().add(FieldDataNascUsuario);
         Date selectedDob = FieldDataNascUsuario.getDate();
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSexo.setBounds(213, 390, 46, 14);
+		lblSexo.setBounds(213, 415, 46, 14);
 		frmCadastroDeUsurio.getContentPane().add(lblSexo);
 		
 		JComboBox comboBoxSexoUsuario = new JComboBox();
 		comboBoxSexoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		comboBoxSexoUsuario.setModel(new DefaultComboBoxModel(new String[] {"", "Feminino", "Masculino", "Não binário", "Outro"}));
-		comboBoxSexoUsuario.setBounds(268, 390, 90, 20);
+		comboBoxSexoUsuario.setBounds(268, 415, 90, 20);
 		frmCadastroDeUsurio.getContentPane().add(comboBoxSexoUsuario);
 		
 		JLabel lblFormaDePagamento = new JLabel("Forma de pagamento preferida:");
 		lblFormaDePagamento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblFormaDePagamento.setBounds(213, 430, 193, 14);
+		lblFormaDePagamento.setBounds(213, 455, 193, 18);
 		frmCadastroDeUsurio.getContentPane().add(lblFormaDePagamento);
 		
 		JComboBox comboBoxFormaPagUsuario = new JComboBox();
 		comboBoxFormaPagUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		comboBoxFormaPagUsuario.setModel(new DefaultComboBoxModel(new String[] {"", "Cartão de Crédito", "PIX", "Dinheiro"}));
-		comboBoxFormaPagUsuario.setBounds(404, 430, 129, 20);
+		comboBoxFormaPagUsuario.setBounds(404, 455, 129, 20);
 		frmCadastroDeUsurio.getContentPane().add(comboBoxFormaPagUsuario);
 		
 		JButton btnCadastrarUsuario = new JButton("Cadastrar");
@@ -195,5 +217,6 @@ public class CadastraUsuario {
 		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnSair.setBounds(433, 504, 100, 23);
 		frmCadastroDeUsurio.getContentPane().add(btnSair);
+		
 	}
 }
