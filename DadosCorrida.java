@@ -16,12 +16,12 @@ public class DadosCorrida {
         System.out.println("Corrida adicionada com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
 
-    public Corrida buscarCorrida (String id){
+    public Corrida buscarCorrida (Veiculo v){
 
         for(int i = 0; i < vetorCorridas.size(); i++){ // percorremos o vetor de corridas do início ao fim...
             Corrida c = vetorCorridas.get(i); // para cada execução do comando de laço, uma corrida diferente será testada, e "identificamos" a corrida pelo seu índice no vetor
 
-            if(id.equals(c.getId())){ // se o id procurado pertencer a alguma corrida cadastrada...
+            if(v.equals(c.getVeiculo())){ // se o id procurado pertencer a alguma corrida cadastrada...
                 return c; // retornamos os dados da corrida desejada
             }
         }
@@ -29,8 +29,7 @@ public class DadosCorrida {
         return null; // caso não encontrarmos a corrida desejada, simplesmente retornamos nulo.
     }
 
-    public void excluirCorrida (Motorista m)
-    ){
+    public void excluirCorrida (Motorista m) {
         for(int i = 0; i < vetorCorridas.size(); i++){ // percorremos o vetor de corridas do início ao fim...
             Corrida c = vetorCorridas.get(i); // a cada execução do comando de laço, uma nova corrida que está cadastrada no vetor será utilizada para que os testes acontecam...
 
@@ -64,9 +63,6 @@ public class DadosCorrida {
             vetorCorridas = (ArrayList<Corrida>) obj;
         }
     }
-
-    
-
 }
 
 
