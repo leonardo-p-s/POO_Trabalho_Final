@@ -41,6 +41,14 @@ public class TelaInicio {
 	public static void main(String[] args) {
 		DadosUsuario.inicializaVetorUsuarios();
 		DadosMotorista.inicializaMotoristas();
+		DadosVeiculos.inicializarVetorVeiculos();
+		DadosCorrida.inicializaCorridas();
+		
+		DadosUsuario.recuperarArquivoUsuarios();
+		DadosMotorista.recuperarArquivoMotoristas();
+		DadosVeiculos.recuperarArquivoVeiculos();
+		DadosCorrida.recuperarArquivoCorridas();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -197,6 +205,5 @@ public class TelaInicio {
 		btnGerenciar.setBounds(545, 460, 105, 23);
 		frmLogin.getContentPane().add(btnGerenciar);
 
-		
 	}
 }
