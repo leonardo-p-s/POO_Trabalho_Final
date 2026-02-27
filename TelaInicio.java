@@ -39,6 +39,8 @@ public class TelaInicio {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		DadosUsuario.inicializaVetorUsuarios();
+		DadosMotorista.inicializaMotoristas();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -104,15 +106,18 @@ public class TelaInicio {
 				String login = txtFieldUsuario.getText();
 				if(login.isEmpty())
 					JOptionPane.showMessageDialog(null,  "Favor digitar um login!", "Login vazio", JOptionPane.WARNING_MESSAGE);
-				/*Ações botão Login
-				Verifica se Login é Motorista
-						Pagina Motorista
-					verifica se é Usuário
-						Página Usuário
-				txtFieldUsuario.getText()
-				Sessao.getInstancia().setUsuario(new Usuario("Leonardo"));
-				*/
-				JOptionPane.showMessageDialog(null,  "Usuário não encontrado!", "Atenção", JOptionPane.WARNING_MESSAGE);
+				else {
+					if(DadosUsuario.fazerLoginUsuario(login)) {
+						frmLogin.setVisible(false);
+						TelaUsuario.main(null);
+					}
+					else if(DadosMotorista.fazerLoginMotorista(login)) {
+						frmLogin.setVisible(false);
+						TelaMotorista.main(null);
+					}
+					else
+						JOptionPane.showMessageDialog(null,  "Usuário não encontrado!", "Atenção", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		btnLogin.setBounds(553, 161, 89, 23);
