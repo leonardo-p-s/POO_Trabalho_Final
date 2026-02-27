@@ -26,6 +26,8 @@ public class Usuario implements Serializable {
 		setCPF(cpf);
 	}
 	public Usuario(String l, String n, String cel, String cpf, String email, String dn, String sex, String fp) {
+		if (n.length() <= 1 || !n.matches("^[\\p{L} ]+$")) {throw new IllegalArgumentException("Nome inválido!");}
+		if (!ValidaCPF.isCPF(cpf)) { throw new IllegalArgumentException("CPF inválido!"); }
 		setLogin(l);
 		setNome(n);
 		setNroCelular(cel);
@@ -52,16 +54,15 @@ public class Usuario implements Serializable {
 
 	// Setters
 	public void setLogin(String login) {Login = login;}
-	public void setNome(String nome) { 
-		if((nome.length() > 1) && (nome.matches("^[\\p{L} ]+$")))
-			Nome = nome;}
+	public void setNome(String nome) {
+	    if (nome == null || nome.length() <= 1 || !nome.matches("^[\\p{L} ]+$")) {
+	        throw new IllegalArgumentException("Nome inválido!"); }
+	    this.Nome = nome;}
 	public void setNroCelular(String nroCelular) {NroCelular = nroCelular;}
 	public void setCPF(String cpf) {
-		if (ValidaCPF.isCPF(cpf))
-			CPF = cpf;
-		else 
-        	JOptionPane.showMessageDialog(null,  "CPF inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
+	    if (!ValidaCPF.isCPF(cpf)) {
+	        throw new IllegalArgumentException("CPF inválido!");}
+	    this.CPF = cpf; }
 	public void setEmail(String email) {this.email = email;}
 	public void setDataNasc(String dataNasc) {DataNasc = dataNasc;}
 	public void setSexo(String sexo) {Sexo = sexo;}
