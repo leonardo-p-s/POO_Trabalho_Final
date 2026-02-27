@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -217,31 +219,63 @@ public class CadastraVeiculo extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * Ações do botão Cadastrar Veículo
-				(String) comboBoxCategoria.getSelectedItem(),
-				Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap
-				VeicUberX(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ac, boolean cb)
-				VeicUberConfort(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ee, boolean br, boolean acdz)
-				VeicUberBlack(Motorista cond, String mar, String mod, int a, String p, String vn, String c, int cap, boolean ip, boolean rll, int cm)
 				
-				txtFieldMarca.getText(),
-				txtFieldModelo.getText(),
-				JYearChooser.getYear();
-				txtFieldPlaca.getText(),
-				txtFieldVIN.getText(),
-				txtFiledCor.getText(),
-				(int) comboBoxCapacPass.getSelectedItem(),
+				 // Ações do botão Cadastrar Veículo
+				// Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap
 				
-				chckbxConfBasico.isSelected()
-				chckbxArCondic.isSelected()
-				chckbxACDualZone.isSelected()
-				chckbxEspacoExtra.isSelected()
-				chckbxBancoReclinavel.isSelected()
-				chckbxInteriorPrem.isSelected()
-				chckbxRodasLigLev.isSelected()
-				(int) comboBoxCapacMalas.getSelectedItem()
-				*/
+				String marca = txtFieldMarca.getText();
+				String mod = txtFieldModelo.getText();
+				int ano = yearChooser.getYear();
+				String p = txtFieldPlaca.getText();
+				String vn = txtFieldVIN.getText();
+				String c = txtFiledCor.getText();
+				String ca = (String) comboBoxCapacPass.getSelectedItem();
+				int cap = 0;
+				if (ca != null && ca != "" ) 
+				        cap = Integer.parseInt(ca);
+				String cat = (String) comboBoxCategoria.getSelectedItem();
+				
+				boolean ac = chckbxArCondic.isSelected();
+				boolean cb = chckbxConfBasico.isSelected();
+				
+				boolean acdz = chckbxACDualZone.isSelected();
+				boolean ee = chckbxEspacoExtra.isSelected();
+				boolean br = chckbxBancoReclinavel.isSelected();
+				boolean ip = chckbxInteriorPrem.isSelected();
+				boolean rll = chckbxRodasLigLev.isSelected();
+				String cmal = (String) comboBoxCapacMalas.getSelectedItem();
+				int cm = 0;
+				if (cmal.isBlank())
+					cm = Integer.parseInt(cmal);
+				
+				// VeicUberX(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ac, boolean cb)
+				// VeicUberConfort(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ee, boolean br, boolean acdz)
+				// VeicUberBlack(Motorista cond, String mar, String mod, int a, String p, String vn, String c, int cap, boolean ip, boolean rll, int cm)
+				if(marca.isBlank() || mod.isBlank() || ano<1900 || p.isBlank() || vn.isBlank() || c.isBlank() || cap==0 || cat.isBlank())
+					JOptionPane.showMessageDialog(null,  "Favor completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+				else {
+					Veiculo v = null;
+					try {
+						if (cat.equals("UberX"))
+							v = new VeicUberX((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ac, cb);
+						else {
+							if (cat.equals("UberConfor"))
+								v = new VeicUberConfort((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ee, br, acdz);
+							else {
+								if (cat.equals("UberBlack"))
+									v = new VeicUberBlack((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ip, rll, cm);
+							}
+						}
+					    DadosVeiculos.cadastrarVeiculo(v);
+						JOptionPane.showMessageDialog(null,  "Veículo cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+						CadastraVeiculo.this.setVisible(false);
+						TelaMotorista.main(null);
+					}
+					catch(Exception ex){
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
+
+				}
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
