@@ -11,6 +11,7 @@ public class DadosMotorista {
 
     public static void cadastraMotorista (Motorista m){
         vetorMotoristas.add(m);
+        salvarArquivoMotoristas();
         System.out.println("Motorista adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
     
@@ -56,6 +57,7 @@ public class DadosMotorista {
 
             if(cnh.equals(m.getCNH())){ // se o cnh pertencer a algum dos motoristas cadastrados...
                 vetorMotoristas.remove(m); // removemos o motorista do vetor de motoristas...
+                salvarArquivoMotoristas();
                 System.out.println("Motorista de CNH: "+m.getCNH()+" removido com sucesso!"); // mensagem que informa que o processo deu certo
                 break; // e então, solicitamos para que o comando de laço se encerre, já que encontramos o motorista desejado e já o removemos do array...
             }
@@ -73,11 +75,11 @@ public class DadosMotorista {
         //OBS: esse processo acontecerá com todos os motoristas presentes no array, até ele acabar com aqueles que estão cadastrados
     }
 
-    public void salvarArquivoMotoristas(){
+    public static void salvarArquivoMotoristas(){
         Persist.gravar(vetorMotoristas, "motoristas.dat");
     }
 
-    public void recuperarArquivoMotoristas(){
+    public static void recuperarArquivoMotoristas(){
         Object obj = Persist.recuperar("motoristas.dat");
 
         if (obj != null) {
