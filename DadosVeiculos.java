@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 
 public class DadosVeiculos {
-    private ArrayList<Veiculo> vetorVeiculos;
+    private static ArrayList<Veiculo> vetorVeiculos;
 
-    public void inicializarVetorVeiculos(){
+    public static void inicializarVetorVeiculos(){
         if(vetorVeiculos == null){ // se o vetor de veículos ainda não exisitir...
             vetorVeiculos = new ArrayList<Veiculo>(); // inicializamos o vetor de veículos, para que possamos começar o processo de cadastro de cada um dos veículos...
         }
     }
 
-    public void cadastrarVeiculo (Veiculo v){
+    public static void cadastrarVeiculo (Veiculo v){
         vetorVeiculos.add(v); // adicionamos o veículp no vetor que foi criado e inicializado anteriormente...
+        salvarArquivoVeiculos();
         System.out.println("Veículo adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
 
@@ -41,19 +42,19 @@ public class DadosVeiculos {
 
             if (placa == v.getPlaca()) { // caso a placa pertença a algum dos véiculos cadastrados...
                 vetorVeiculos.remove(v); // removemos esse veículo do vetor de veículos.
+                salvarArquivoVeiculos();
                 System.out.println("Veículo de palca: " + v.getPlaca() + " removido com sucesso!"); // mensagem que informa que o processo deu certo
                 break; // e então, solicitamos que o comando de laço seja interrompido, já que encontramos o motorista desejado e já removemos o motorista do array...
             }
         }
-
         System.out.println("Veículo não encontrado!"); // caso contrário, exibimos uma mensagem de erro dizendo que o veículo que se deseja excluir do vetor,, não está presente nele...
     }
 
-    public void salvarArquivoVeiculos(){
+    public static void salvarArquivoVeiculos(){
         Persist.gravar(vetorVeiculos, "veiculos.dat");
     }
 
-    public void recuperarArquivoVeiculos(){
+    public static void recuperarArquivoVeiculos(){
         Object obj = Persist.recuperar("veiculos.dat");
 
         if (obj != null) {
