@@ -9,10 +9,18 @@ public class DadosMotorista {
         }
     }
 
-    public void cadastraMotorista (Motorista m){
+    public static void cadastraMotorista (Motorista m){
         vetorMotoristas.add(m);
         System.out.println("Motorista adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
+    
+    public static boolean loginExiste(String Login) {
+  	   for (Motorista u : vetorMotoristas) { // percorremos o vetor de usuários do início ao fim...
+  		   if (u.getLogin().equals(Login))
+  			  return true;
+  	   }
+ 	   return false;
+     }
 
     public static boolean fazerLoginMotorista(String Login) {
         for (int i = 0; i < vetorMotoristas.size(); i++) { // percorremos o vetor de motoristas do início ao fim...
