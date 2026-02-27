@@ -90,30 +90,40 @@ public class TelaMotorista extends JFrame {
 		btnVerCorridas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerCorridas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Corrida c = DadosCorrida.corridaDiponivel();
+				if(c != null) {
 				// Verifica se existe corrida com status "solicitada"
 				// Caso tenha corrida disponível
 					String[] options = {"Aceitar Corrida", "Fechar"}; 
 					int escolha = JOptionPane.showOptionDialog( 
 							null, 
-							"Origem: \nDestino: \nValor: R$ \n ", 
+							"Origem: "+ c.getOrigem()+
+							"\nDestino: "+ c.getDestino()+
+							"\nValor: R$"+c.getValorTotalViagem()+
+							"\n ", 
 							"Corrida Disponível!", 
 							JOptionPane.DEFAULT_OPTION, 
 							JOptionPane.WARNING_MESSAGE, 
 							null, 
 							options, 
-							options[0]
-							);// botão padrão selecionado );
+							options[0]);// botão padrão selecionado );
 					if (escolha == 0) {
 						// Motorista aceitou a corrida
-					} 
+						Veiculo v = m.getVeiculos().getFirst();
+						c.AceitarCorrida(v);
+						setVisible(false); 
+						TelaStatusCorridaMotorista.main(null);
+					}
+				}else
 				// Caso Não tenha Corrida Disponível
 					JOptionPane.showMessageDialog(null, "Nenhuma corrida disponível nesse momento.\nTente mais tarde!", "Nenhuma Corrida Disponível", JOptionPane.INFORMATION_MESSAGE);
 				
-				//setVisible(false); 
-				//....main(null);
+				
 			}
 		});
 		btnVerCorridas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		if(m.getVeiculos().isEmpty())
+			btnVerCorridas.setEnabled(false);
 		getContentPane().add(btnVerCorridas);
 		
 		JButton btnCadastrarVeic = new JButton("Cadastrar Veículo");
