@@ -207,16 +207,20 @@ public class CadastraUsuario {
 				String fp = (String) comboBoxFormaPagUsuario.getSelectedItem();
 				
 				if(l.isBlank() || n.isBlank() || cel.isBlank() || cpf.isBlank() || email.isBlank() || dn.isBlank() || sex.isBlank() || fp.isBlank())
-					JOptionPane.showMessageDialog(null,  "Favor digitar completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null,  "Favor completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
 				else {
-					try {
-					    Usuario u = new Usuario(l, n, cel, cpf, email, dn, sex, fp);
-					    DadosUsuario.cadastrarUsuario(u);
-						JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
-						frmCadastroDeUsurio.setVisible(false);
-						TelaUsuario.main(null);
-					} catch (IllegalArgumentException ex) {
-					    JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+					if (DadosMotorista.loginExiste(l) || DadosUsuario.loginExiste(l))
+						JOptionPane.showMessageDialog(null, "Login já existe!\nFavor escolher outro Login.", "Atenção", JOptionPane.WARNING_MESSAGE);
+					else {
+						try {
+						    Usuario u = new Usuario(l, n, cel, cpf, email, dn, sex, fp);
+						    DadosUsuario.cadastrarUsuario(u);
+							JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+							frmCadastroDeUsurio.setVisible(false);
+							TelaUsuario.main(null);
+						} catch (IllegalArgumentException ex) {
+						    JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+						}
 					}
 				}
 			}
