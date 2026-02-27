@@ -14,6 +14,14 @@ public class DadosUsuario {
         System.out.println("Usuário adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
         salvarArquivoUsuarios();
     }
+    
+    public static boolean loginExiste(String Login) {
+ 	   for (Usuario u : vetorUsuarios) { // percorremos o vetor de usuários do início ao fim...
+ 		   if (u.getLogin().equals(Login))
+ 			  return true;
+ 	   }
+	   return false;
+    }
 
    public static boolean fazerLoginUsuario(String Login) {
 	   for (Usuario u : vetorUsuarios) { // percorremos o vetor de usuários do início ao fim...
