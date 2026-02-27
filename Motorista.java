@@ -24,7 +24,8 @@ public class Motorista implements Serializable{
 	private float NotaMediaAval;
 	
 	// Constructors
-	public Motorista(String n, String ns, String cpf, String cnh, String end, String dn) {
+	public Motorista(String l, String n, String ns, String cpf, String cnh, String end, String dn) {
+		setLogin(l);
 		setNome(n);
 		setNomeSocial(ns);
 		setCPF(cpf);
