@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class DadosMotorista {
-    private ArrayList<Motorista> vetorMotoristas;
+    private static ArrayList<Motorista> vetorMotoristas;
 
-    public void inicializaMotoristas(){
+    public static void inicializaMotoristas(){
         if(vetorMotoristas == null) { // caso o vetor de motoristas ainda não exista...
             vetorMotoristas = new ArrayList<Motorista>(); // inicializamos um vetor para começar os cadastros dos motoristas...
         }
@@ -14,7 +14,7 @@ public class DadosMotorista {
         System.out.println("Motorista adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
     }
 
-    public boolean fazerLoginMotorista(String Login) {
+    public static boolean fazerLoginMotorista(String Login) {
         for (int i = 0; i < vetorMotoristas.size(); i++) { // percorremos o vetor de motoristas do início ao fim...
             Motorista m = vetorMotoristas.get(i); // a cada execução do comando de laço, um motorista diferente será testado, e "identificamos" ele pelo índice no vetor
 
