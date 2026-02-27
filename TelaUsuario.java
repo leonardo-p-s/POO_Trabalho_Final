@@ -49,6 +49,14 @@ public class TelaUsuario extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/UberLand_Icon.png")));
 		frmTelaUsuario.setLayout(null);
 		
+		Usuario u = (Usuario) Sessao.getInstancia().getUser();
+		
+		JLabel lblUsuario = new JLabel(u.getLogin());
+		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblUsuario.setBounds(654, 11, 100, 41);
+		frmTelaUsuario.add(lblUsuario);
+		
 		JLabel labelLogo = new JLabel("");
 		labelLogo.setForeground(new Color(0, 0, 0));
 		labelLogo.setBackground(new Color(0, 0, 0));
@@ -106,6 +114,7 @@ public class TelaUsuario extends JFrame {
 		frmTelaUsuario.add(btnVerMeusDados);
 		
 		
+		
 		JButton btnCorridaAtual = new JButton("Corrida em Andamento");
 		btnCorridaAtual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,9 +124,10 @@ public class TelaUsuario extends JFrame {
 		});
 		btnCorridaAtual.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCorridaAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		if(DadosCorrida.dadosCorridaEmAndamentoUsuario().isBlank())
+			btnCorridaAtual.setEnabled(false);
 		btnCorridaAtual.setBounds(176, 165, 180, 23);
-		frmTelaUsuario.add(btnCorridaAtual);
-		
+		frmTelaUsuario.add(btnCorridaAtual);		
 	}
 
 }
