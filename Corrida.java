@@ -7,6 +7,7 @@ public class Corrida implements Serializable{
 	private String Destino;
 	private String DataSolicit;
 	private String HoraSolicit;
+	private String CategoriaVeic;				// UberX, UberConfort, UberBlack
 	
 	private Veiculo veiculo;
 	private Motorista motorista;				// Motorista associado ao veículo
@@ -28,12 +29,13 @@ public class Corrida implements Serializable{
 	private String FormaPagamento;				// Cartao, PIX, Dinheiro,...
 	
 	// Constructors
-	public Corrida(Usuario s, String or, String dest, String d, String h) {
+	public Corrida(Usuario s, String or, String dest, String c, String d, String h) {
 		setSolicitante(s);
 		//setVeiculo(v);	// A corrida é criada no momento da solicitacao pelo usuario. 
 							//O veículo só é definido quando a corrida é aceita pelo motorista
 		setOrigem(or);
 		setDestino(dest);
+		setCategoriaVeic(c);
 		setDataSolicit(d);
 		setHoraSolicit(h);
 		setStatusCorrida("Solicitada");
@@ -46,6 +48,8 @@ public class Corrida implements Serializable{
 	public void setOrigem(String origem) {Origem = origem;}
 	public String getDestino() {return Destino;}
 	public void setDestino(String destino) {Destino = destino;}
+	public String getCategoriaVeic() {return CategoriaVeic;}
+	public void setCategoriaVeic(String categoriaVeic) {CategoriaVeic = categoriaVeic;}
 	public String getDataSolicit() {return DataSolicit;}
 	public void setDataSolicit(String dataSolicit) {DataSolicit = dataSolicit;}
 	public String getHoraSolicit() {return HoraSolicit;}
@@ -89,15 +93,20 @@ public class Corrida implements Serializable{
 
 	// Methods
 	public void CancelarCorrida(String CancPor, String LocalAtual, String hora) {
-		if(StatusCorrida == "Iniciada") {
+		if(StatusCorrida.equals("Iniciada")) {
 			setStatusFinal("Cancelada durante a viagem");
 			setStatusCorrida("Finalizada");
+			setValorTotalViagem(DistPercorrida(Origem, LocalAtual));
 		}
-		else
+		else {
 			setStatusFinal("Cancelada antes do início");
-		
+			setStatusCorrida("Finalizada");
+			ValorTotalViagem = 0.0f;
+		}
 		setCanceladoPor(CancPor);
-		ConcluirCorrida(LocalAtual, hora);
+		setLocalFimCorrida(LocalAtual);
+		setHoraFimCorrida(hora);
+		System.out.println("Corrida cancelada");
   	}
 	public void AceitarCorrida(Veiculo veic) {
 		setStatusCorrida("Aceita");
@@ -110,7 +119,7 @@ public class Corrida implements Serializable{
 	}
 
 	public void ConcluirCorrida(String LocalAtual, String hora) {
-		if(StatusCorrida == "Iniciada") {
+		if(StatusCorrida.equals("Iniciada")) {
 			setStatusFinal("Realizada");
 			setStatusCorrida("Finalizada");
 		}
