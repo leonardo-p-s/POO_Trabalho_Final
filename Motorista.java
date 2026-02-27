@@ -72,14 +72,21 @@ public class Motorista implements Serializable{
 
 
 	// Methods
-	public void Ativa() {setAtivo(true);}
+	public void Ativa() {
+		setAtivo(true);
+		DadosMotorista.salvarArquivoMotoristas();}
 	public void Desativa() {
 		setAtivo(false);
 		for(Veiculo v : Veiculos)			// Quando um motorista é desativado, todos os seus veículos são desativados.
 			v.Desativa();
+		DadosMotorista.salvarArquivoMotoristas();
 		}
-	public void AdicionaVeiculo(Veiculo v) {Veiculos.add(v);}
-	public void RemoveVeiculo(Veiculo v) {Veiculos.remove(v);}
+	public void AdicionaVeiculo(Veiculo v) {
+		Veiculos.add(v);
+		DadosMotorista.salvarArquivoMotoristas();}
+	public void RemoveVeiculo(Veiculo v) {
+		Veiculos.remove(v);
+		DadosMotorista.salvarArquivoMotoristas();}
 	
 	public void AdicionaCorrida() {
 		setNroCorridas(NroCorridas += 1);
