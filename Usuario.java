@@ -25,7 +25,8 @@ public class Usuario implements Serializable {
 		setNome(n);
 		setCPF(cpf);
 	}
-	public Usuario(String n, String cel, String cpf, String email, String dn, String sex, String fp) {
+	public Usuario(String l, String n, String cel, String cpf, String email, String dn, String sex, String fp) {
+		setLogin(l);
 		setNome(n);
 		setNroCelular(cel);
 		setCPF(cpf);
