@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -103,12 +104,29 @@ public class CadastrarCorrida extends JFrame {
 		JButton btnChamar = new JButton("Pedir");
 		btnChamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/* Ações do Botão Pedir (criar) Corrida
-				 * Usuario s, String or, String dest, String d, String h
-				Usuario user = (Usuario) Sessao.getInstancia().getUser();
-				Corrida c = new Corrida(user, txtFieldOrigem.getText(), txtFieldDestino.getText(), LocalDate.now(), LocalTime.now());
-            	Corridas.criar(c);???
-            	*/
+				// Ações do Botão Pedir (criar) Corrida
+				// Usuario s, String or, String dest, String d, String h
+				Usuario u = (Usuario) Sessao.getInstancia().getUser();
+				String or = txtFieldOrigem.getText();
+				String dest = txtFieldDestino.getText();
+				String tipo = (String) comboBoxTipoCarro.getSelectedItem();
+				String d = LocalDate.now().toString();
+				String h = LocalTime.now().toString();
+				
+				if(or.isBlank() || dest.isBlank() || tipo.isBlank())
+					JOptionPane.showMessageDialog(null,  "Favor completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+				else {
+					try {
+						Corrida c = new Corrida(u, or, dest, tipo, d, h);
+						DadosCorrida.cadastraCorrida(c);
+						JOptionPane.showMessageDialog(null,  "Motorista Solicitado!\nEm breve um motorista estará a caminho!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+						setVisible(false);
+						TelaStatusCorridaUsuario.main(null);
+					}
+					catch(Exception ex){
+						JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
+				}
 			}
 		});
 		btnChamar.setFont(new Font("Tahoma", Font.PLAIN, 13));
