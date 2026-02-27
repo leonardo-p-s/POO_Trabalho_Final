@@ -254,18 +254,20 @@ public class CadastraVeiculo extends JFrame {
 				if(marca.isBlank() || mod.isBlank() || ano<1900 || p.isBlank() || vn.isBlank() || c.isBlank() || cap==0 || cat.isBlank())
 					JOptionPane.showMessageDialog(null,  "Favor completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
 				else {
+					Motorista m = (Motorista)Sessao.getInstancia().getUser();
 					Veiculo v = null;
 					try {
 						if (cat.equals("UberX"))
-							v = new VeicUberX((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ac, cb);
+							v = new VeicUberX(m,marca, mod, ano, p, vn, c, cap, ac, cb);
 						else {
 							if (cat.equals("UberConfor"))
-								v = new VeicUberConfort((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ee, br, acdz);
+								v = new VeicUberConfort(m,marca, mod, ano, p, vn, c, cap, ee, br, acdz);
 							else {
 								if (cat.equals("UberBlack"))
-									v = new VeicUberBlack((Motorista)Sessao.getInstancia().getUser(),marca, mod, ano, p, vn, c, cap, ip, rll, cm);
+									v = new VeicUberBlack(m,marca, mod, ano, p, vn, c, cap, ip, rll, cm);
 							}
 						}
+						m.AdicionaVeiculo(v);
 					    DadosVeiculos.cadastrarVeiculo(v);
 						JOptionPane.showMessageDialog(null,  "Veículo cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
 						CadastraVeiculo.this.setVisible(false);
