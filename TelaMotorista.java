@@ -48,22 +48,30 @@ public class TelaMotorista extends JFrame {
 		frmTelaMotorista.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(frmTelaMotorista);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/UberLand_Icon.png")));
+		
+		Motorista m = (Motorista) Sessao.getInstancia().getUser();
 		frmTelaMotorista.setLayout(null);
 		
+		JLabel lblMotorista = new JLabel(m.getNomeSocial());
+		lblMotorista.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMotorista.setBounds(10, 11, 100, 41);
+		frmTelaMotorista.add(lblMotorista);
+		
 		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(230, 11, 303, 76);
 		labelLogo.setForeground(new Color(0, 0, 0));
 		labelLogo.setBackground(new Color(0, 0, 0));
 		labelLogo.setIcon(new ImageIcon(this.getClass().getResource("/UberLand_LogoF.png")));
-		labelLogo.setBounds(230, 11, 303, 76);
 		getContentPane().add(labelLogo);
 		
 		JLabel lblTitulo = new JLabel("Bem vindo ao UberLand!");
+		lblTitulo.setBounds(282, 118, 200, 29);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTitulo.setBounds(282, 118, 200, 29);
 		getContentPane().add(lblTitulo);
 		
 		JButton btnVerCorridaAtual = new JButton("Corrida em Andamento");
+		btnVerCorridaAtual.setBounds(175, 180, 180, 23);
 		btnVerCorridaAtual.setEnabled(true);
 		btnVerCorridaAtual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,10 +81,12 @@ public class TelaMotorista extends JFrame {
 		});
 		btnVerCorridaAtual.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerCorridaAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerCorridaAtual.setBounds(175, 180, 180, 23);
+		if(DadosCorrida.dadosCorridaEmAndamentoMotorista().isBlank())
+			btnVerCorridaAtual.setEnabled(false);
 		frmTelaMotorista.add(btnVerCorridaAtual);
 		
 		JButton btnVerCorridas = new JButton("Tem Corrida Disponível?");
+		btnVerCorridas.setBounds(175, 216, 180, 23);
 		btnVerCorridas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerCorridas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,10 +114,10 @@ public class TelaMotorista extends JFrame {
 			}
 		});
 		btnVerCorridas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerCorridas.setBounds(175, 216, 180, 23);
 		getContentPane().add(btnVerCorridas);
 		
 		JButton btnCadastrarVeic = new JButton("Cadastrar Veículo");
+		btnCadastrarVeic.setBounds(175, 278, 180, 23);
 		btnCadastrarVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false); 
@@ -116,10 +126,10 @@ public class TelaMotorista extends JFrame {
 		});
 		btnCadastrarVeic.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCadastrarVeic.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCadastrarVeic.setBounds(175, 278, 180, 23);
 		frmTelaMotorista.add(btnCadastrarVeic);
 		
 		JButton btnVerVeículos = new JButton("Meus Veículos");
+		btnVerVeículos.setBounds(175, 313, 180, 23);
 		btnVerVeículos.setEnabled(false);
 		btnVerVeículos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,10 +137,10 @@ public class TelaMotorista extends JFrame {
 		});
 		btnVerVeículos.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerVeículos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerVeículos.setBounds(175, 313, 180, 23);
 		frmTelaMotorista.add(btnVerVeículos);
 		
 		JButton btnVerViagens = new JButton("Minhas Viagens");
+		btnVerViagens.setBounds(175, 348, 180, 23);
 		btnVerViagens.setEnabled(false);
 		btnVerViagens.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,17 +148,17 @@ public class TelaMotorista extends JFrame {
 		});
 		btnVerViagens.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerViagens.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerViagens.setBounds(175, 348, 180, 23);
 		frmTelaMotorista.add(btnVerViagens);
 		
 		JButton btnVerMeusDados = new JButton("Meus Dados");
+		btnVerMeusDados.setBounds(175, 383, 180, 23);
 		btnVerMeusDados.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerMeusDados.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnVerMeusDados.setEnabled(false);
-		btnVerMeusDados.setBounds(175, 383, 180, 23);
 		frmTelaMotorista.add(btnVerMeusDados);
 		
 		btnSair = new JButton("Sair");
+		btnSair.setBounds(175, 438, 100, 23);
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false); 
@@ -156,9 +166,7 @@ public class TelaMotorista extends JFrame {
 			}
 		});
 		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSair.setBounds(175, 438, 100, 23);
 		getContentPane().add(btnSair);
 		
 	}
-
 }
