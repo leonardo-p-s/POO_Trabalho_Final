@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -63,13 +64,28 @@ public class TelaStatusCorridaUsuario extends JFrame {
 		lblTitulo.setBounds(257, 118, 250, 29);
 		getContentPane().add(lblTitulo);
 		
+		String dadosCorrida = "<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>";
+		String c = DadosCorrida.dadosCorridaEmAndamentoUsuario();
+		
+		if (!c.isBlank())
+			dadosCorrida = c;
+		
+		JLabel lblDetalhesCorrida = new JLabel(dadosCorrida);
+		lblDetalhesCorrida.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDetalhesCorrida.setBounds(175, 169, 373, 179);
+		frmTelaStatusCorrUsuario.add(lblDetalhesCorrida);
+		
 		JButton btnCancelarCorrida = new JButton("Cancelar Corrida");
 		btnCancelarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int resp = JOptionPane.showConfirmDialog(null,  "Deseja realmente Cancelar a Corrida?", "Confirmar", JOptionPane.YES_NO_OPTION);
 				if(resp == JOptionPane.YES_OPTION) {
 					// Cancelar corrida
+					Corrida c = DadosCorrida.corridaEmAndamentoUsuario();
+					c.CancelarCorrida("Usuario", "Local Atual GPS", LocalTime.now().toString());
 					JOptionPane.showMessageDialog(null, "Solicitação de cancelamento de corrida enviada!", "Corrida Cancelada", JOptionPane.INFORMATION_MESSAGE);
+					setVisible(false); 
+					TelaUsuario.main(null);
 				}
 					
 			}
@@ -90,10 +106,7 @@ public class TelaStatusCorridaUsuario extends JFrame {
 		btnFechar.setBounds(175, 409, 100, 23);
 		getContentPane().add(btnFechar);
 		
-		JLabel lblNewLabel = new JLabel("<html>Origem: <br>Destino: <br>Motorista: <br>Veículo: <br>Valor Total: <br>Status:  </html>");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(175, 169, 373, 179);
-		frmTelaStatusCorrUsuario.add(lblNewLabel);
+
 	}
 
 }
