@@ -95,23 +95,24 @@ public class Corrida implements Serializable{
 	public void CancelarCorrida(String CancPor, String LocalAtual, String hora) {
 		if(StatusCorrida.equals("Iniciada")) {
 			setStatusFinal("Cancelada durante a viagem");
-			setStatusCorrida("Finalizada");
 			setValorTotalViagem(DistPercorrida(Origem, LocalAtual));
 		}
 		else {
 			setStatusFinal("Cancelada antes do início");
-			setStatusCorrida("Finalizada");
 			ValorTotalViagem = 0.0f;
 		}
+		setStatusCorrida("Finalizada");
 		setCanceladoPor(CancPor);
 		setLocalFimCorrida(LocalAtual);
 		setHoraFimCorrida(hora);
+		DadosCorrida.salvarArquivoCorridas();
 		System.out.println("Corrida cancelada");
   	}
 	public void AceitarCorrida(Veiculo veic) {
 		setStatusCorrida("Aceita");
 		setVeiculo(veic);
 		setMotorista(veic.getCondutor());
+		DadosCorrida.salvarArquivoCorridas();
 	}
 	public float DistPercorrida(String Origem, String LocalFim) {
 		// ... Calculo distancia percorrida
@@ -130,6 +131,7 @@ public class Corrida implements Serializable{
 		setValorTotalViagem(DistPercorrida(Origem, LocalFimCorrida));
 		setValorUberL();
 		setValorMotorista();
+		DadosCorrida.salvarArquivoCorridas();
 		// 
 	}
 	public void RegistraValorExtra(float extra) {
