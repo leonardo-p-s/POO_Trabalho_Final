@@ -244,7 +244,7 @@ public class CadastroMotorista extends JFrame {
 						try {
 						    Motorista u = new Motorista(l, n, ns, cpf, cnh, end, dn);
 						    DadosMotorista.cadastraMotorista(u);
-							JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,  "Cadastro criado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
 							CadastroMotorista.this.setVisible(false);
 							TelaMotorista.main(null);
 						} catch (IllegalArgumentException ex) {
