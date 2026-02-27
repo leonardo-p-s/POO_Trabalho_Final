@@ -77,11 +77,14 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		JButton btnFinalizarCorrida = new JButton("Finalizar Corrida");
 		btnFinalizarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
-				c.ConcluirCorrida("Loca Atual GPS", LocalTime.now().toString());
-				JOptionPane.showMessageDialog(null, "Corrida Finalizada!", "Corrida Finalizada", JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false); 
-				TelaMotorista.main(null);
+				int resp = JOptionPane.showConfirmDialog(null,  "Deseja realmente Finalizar a Corrida?", "Confirmar", JOptionPane.YES_NO_OPTION);
+				if(resp == JOptionPane.YES_OPTION) {
+					Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
+					c.ConcluirCorrida("Loca Atual GPS", LocalTime.now().toString());
+					JOptionPane.showMessageDialog(null, "Corrida Finalizada!", "Corrida Finalizada", JOptionPane.INFORMATION_MESSAGE);
+					setVisible(false); 
+					TelaMotorista.main(null);
+				}
 			}
 		});
 		btnFinalizarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
