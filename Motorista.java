@@ -25,6 +25,8 @@ public class Motorista implements Serializable{
 	
 	// Constructors
 	public Motorista(String l, String n, String ns, String cpf, String cnh, String end, String dn) {
+		if (n.length() <= 1 || !n.matches("^[\\p{L} ]+$")) {throw new IllegalArgumentException("Nome inválido!");}
+		if (!ValidaCPF.isCPF(cpf)) { throw new IllegalArgumentException("CPF inválido!"); }
 		setLogin(l);
 		setNome(n);
 		setNomeSocial(ns);
@@ -41,17 +43,16 @@ public class Motorista implements Serializable{
 	public void setLogin(String login) {Login = login;}
 	public String getNome() {return Nome;}
 	public void setNome(String nome) { 
-		if((nome.length() > 1) && (nome.matches("^[\\p{L} ]+$")))
-			Nome = nome;}
+		if (nome == null || nome.length() <= 1 || !nome.matches("^[\\p{L} ]+$")) {
+	        throw new IllegalArgumentException("Nome inválido!"); }
+	    this.Nome = nome;}
 	public String getNomeSocial() { return NomeSocial;}
 	public void setNomeSocial(String nomeSocial) { NomeSocial = nomeSocial;}
 	public String getCPF() { return CPF;}
 	public void setCPF(String cpf) {
-        if (ValidaCPF.isCPF(cpf) == true)
-        	CPF = cpf;
-        else 
-        	JOptionPane.showMessageDialog(null,  "CPF inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
+		if (!ValidaCPF.isCPF(cpf)) {
+	        throw new IllegalArgumentException("CPF inválido!");}
+	    this.CPF = cpf; }
 	public String getCNH() {return CNH;}
 	public void setCNH(String cNH) {CNH = cNH;}
 	public String getEndereco() {return Endereco;}
