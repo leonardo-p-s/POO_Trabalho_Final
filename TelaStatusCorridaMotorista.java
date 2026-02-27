@@ -63,6 +63,26 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		lblTitulo.setBounds(257, 118, 250, 29);
 		getContentPane().add(lblTitulo);
 		
+		
+		JLabel lblDetalhesCorrida = new JLabel("<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>");
+		lblDetalhesCorrida.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDetalhesCorrida.setBounds(175, 169, 373, 179);
+		frmTelaStatusCorrMotorista.add(lblDetalhesCorrida);
+		
+		JButton btnFinalizarCorrida = new JButton("Finalizar Corrida");
+		btnFinalizarCorrida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					
+			}
+		});
+		btnFinalizarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
+		btnFinalizarCorrida.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnFinalizarCorrida.setBounds(175, 375, 150, 23);
+		frmTelaStatusCorrMotorista.add(btnFinalizarCorrida);
+
+
+		
 		JButton btnCancelarCorrida = new JButton("Cancelar Corrida");
 		btnCancelarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -70,12 +90,11 @@ public class TelaStatusCorridaMotorista extends JFrame {
 				if(resp == JOptionPane.YES_OPTION) {
 					// Cancelar corrida
 				}
-					
 			}
 		});
 		btnCancelarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCancelarCorrida.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCancelarCorrida.setBounds(175, 375, 150, 23);
+		btnCancelarCorrida.setBounds(357, 376, 150, 23);
 		frmTelaStatusCorrMotorista.add(btnCancelarCorrida);
 		
 		btnFechar = new JButton("Fechar");
@@ -88,11 +107,6 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		btnFechar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnFechar.setBounds(175, 409, 100, 23);
 		getContentPane().add(btnFechar);
-		
-		JLabel lblNewLabel = new JLabel("<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(175, 169, 373, 179);
-		frmTelaStatusCorrMotorista.add(lblNewLabel);
 	}
 
 }
