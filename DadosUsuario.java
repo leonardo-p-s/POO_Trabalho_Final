@@ -1,31 +1,29 @@
 import java.util.ArrayList;
 
 public class DadosUsuario {
-    private ArrayList<Usuario> vetorUsuarios;
+    private static ArrayList<Usuario> vetorUsuarios;
 
-    private void inicializaVetorUsuarios(){
+    public static void inicializaVetorUsuarios(){
         if(vetorUsuarios == null){ // caso o vetor de usuários ainda não exista...
             vetorUsuarios = new ArrayList<Usuario>(); // inicializamos o array para conseguirmos fazer os cadastros de usuários
         }
     }
 
-    public void cadastrarUsuario(Usuario usuario) {
+    public static void cadastrarUsuario(Usuario usuario) {
         vetorUsuarios.add(usuario); // adicionamos um usuário ao array de usuários
         System.out.println("Usuário adicionado com sucesso!"); // exibimos uma mensagem dizendo que o processo de adicionar deu certo!
+        salvarArquivoUsuarios();
     }
 
-   public boolean fazerLoginUsuario(String Login) {
-        for (int i = 0; i < vetorUsuarios.size(); i++) { // percorremos o vetor de usuários do início ao fim...
-            Usuario u = vetorUsuarios.get(i); // a cada execução do comando de laço, um usuário diferente será testado, e "identificamos" ele pelo índice no vetor
-
-            if (u.getLogin().equals(Login)) { // se o login e a senha do usuário forem iguais aos dados inseridos para login...
-                Sessao.getInstancia().setUser(u); // o usuário logado passa a ser o usuário que possui os dados inseridos para login, ou seja, o usuário que se deseja logar no sistema
-                System.out.println("Login de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o login deu certo
-                return true; // retornamos verdadeiro, ou seja, o login foi bem sucedido!
-            }
-        }
-
-        return false; // caso contrário, e nenhum usuário seja encontrado, retornamos falso, ou seja, o login falhou!
+   public static boolean fazerLoginUsuario(String Login) {
+	   for (Usuario u : vetorUsuarios) { // percorremos o vetor de usuários do início ao fim...
+		   if (u.getLogin().equals(Login)) { // se o login e a senha do usuário forem iguais aos dados inseridos para login...
+			   Sessao.getInstancia().setUser(u); // o usuário logado passa a ser o usuário que possui os dados inseridos para login, ou seja, o usuário que se deseja logar no sistema
+			   System.out.println("Login de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o login deu certo
+			   return true; // retornamos verdadeiro, ou seja, o login foi bem sucedido!
+		   }
+	   }
+	   return false; // caso contrário, e nenhum usuário seja encontrado, retornamos falso, ou seja, o login falhou!
    }
 
    public void fazerLogoutUsuario() {
@@ -52,6 +50,7 @@ public class DadosUsuario {
             if (u.getCPF().equals(cpf)) { // se o cpf que desejamos pertencer a um usuário cadastrado...
                 vetorUsuarios.remove(u); // removemos o usuário do vetor
                 System.out.println("Usuário de CPF: "+u.getCPF()+" removido com sucesso!"); // mensagem que informa que o processo deu certo
+                this.salvarArquivoUsuarios();
                 break; // caso encontrarmos o usuário desejado, pedimos para que o comando de laço se encerre...
             }
         }
@@ -68,11 +67,11 @@ public class DadosUsuario {
         //OBS: esse processo acontecerá com todos os usuários presentes no array, até ele acabar com aqueles que estão cadastrados
     }
 
-    public void salvarArquivoUsuarios(){
+    public static void salvarArquivoUsuarios(){
         Persist.gravar(vetorUsuarios, "usuarios.dat");
     }
 
-    public void recuperarArquivoUsuarios(){
+    public static void recuperarArquivoUsuarios(){
         Object obj = Persist.recuperar("usuarios.dat");
 
         if (obj != null) {
