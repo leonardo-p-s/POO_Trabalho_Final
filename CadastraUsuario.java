@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +25,7 @@ import javax.swing.JTree;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
@@ -163,7 +165,6 @@ public class CadastraUsuario {
         FieldDataNascUsuario.setDateFormatString("dd-MMM-YYYY");
         FieldDataNascUsuario.setBounds(347, 375, 124, 20);
         frmCadastroDeUsurio.getContentPane().add(FieldDataNascUsuario);
-        Date selectedDob = FieldDataNascUsuario.getDate();
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -190,16 +191,34 @@ public class CadastraUsuario {
 		JButton btnCadastrarUsuario = new JButton("Cadastrar");
 		btnCadastrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/* Ações do Botão Cadastrar Usuario
+				// Ações do Botão Cadastrar Usuario
 				// String n, String cel, String cpf, String email, String dn, String sex, String fp
-				txtFieldNomeUsuario.getText(),
-				txtFieldDDDUsuario.getText() + txtFieldTelefUsuario.getText(),
-				txtFieldCPFUsuario.getText(),
-				txtFieldEmailUsuario.getText(),
-				selectedDob,
-				(String) comboBoxSexoUsuario.getSelectedItem(),
-				(String) comboBoxFormaPagUsuario.getSelectedItem(),
-				*/				
+				String l = txtLogin.getText();
+				String n = txtFieldNomeUsuario.getText();
+				String cel = txtFieldDDDUsuario.getText() + " " + txtFieldTelefUsuario.getText();
+				String cpf = txtFieldCPFUsuario.getText();
+				String email = txtFieldEmailUsuario.getText();
+				Date selectedDob =  FieldDataNascUsuario.getDate();
+				String dn = "";
+				if(selectedDob != null) {
+		        	SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-YYYY");
+					dn = sdf.format(selectedDob);}
+				String sex = (String) comboBoxSexoUsuario.getSelectedItem();
+				String fp = (String) comboBoxFormaPagUsuario.getSelectedItem();
+				
+				if(l.isBlank() || n.isBlank() || cel.isBlank() || cpf.isBlank() || email.isBlank() || dn.isBlank() || sex.isBlank() || fp.isBlank())
+					JOptionPane.showMessageDialog(null,  "Favor digitar completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+				else {
+					try {
+					    Usuario u = new Usuario(l, n, cel, cpf, email, dn, sex, fp);
+					    DadosUsuario.cadastrarUsuario(u);
+						JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+						frmCadastroDeUsurio.setVisible(false);
+						TelaUsuario.main(null);
+					} catch (IllegalArgumentException ex) {
+					    JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+					}
+				}
 			}
 		});
 		btnCadastrarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
