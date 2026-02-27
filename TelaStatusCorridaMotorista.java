@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -63,8 +64,12 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		lblTitulo.setBounds(257, 118, 250, 29);
 		getContentPane().add(lblTitulo);
 		
+		String dadosCorrida = "<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>";
+		String c = DadosCorrida.dadosCorridaEmAndamentoMotorista();
+		if (!c.isBlank())
+			dadosCorrida = c;
 		
-		JLabel lblDetalhesCorrida = new JLabel("<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>");
+		JLabel lblDetalhesCorrida = new JLabel(dadosCorrida);
 		lblDetalhesCorrida.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDetalhesCorrida.setBounds(175, 169, 373, 179);
 		frmTelaStatusCorrMotorista.add(lblDetalhesCorrida);
@@ -72,15 +77,17 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		JButton btnFinalizarCorrida = new JButton("Finalizar Corrida");
 		btnFinalizarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					
+				Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
+				c.ConcluirCorrida("Loca Atual GPS", LocalTime.now().toString());
+				JOptionPane.showMessageDialog(null, "Corrida Finalizada!", "Corrida Finalizada", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false); 
+				TelaMotorista.main(null);
 			}
 		});
 		btnFinalizarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
 		btnFinalizarCorrida.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnFinalizarCorrida.setBounds(175, 375, 150, 23);
 		frmTelaStatusCorrMotorista.add(btnFinalizarCorrida);
-
 
 		
 		JButton btnCancelarCorrida = new JButton("Cancelar Corrida");
@@ -89,6 +96,11 @@ public class TelaStatusCorridaMotorista extends JFrame {
 				int resp = JOptionPane.showConfirmDialog(null,  "Deseja realmente Cancelar a Corrida?", "Confirmar", JOptionPane.YES_NO_OPTION);
 				if(resp == JOptionPane.YES_OPTION) {
 					// Cancelar corrida
+					Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
+					c.CancelarCorrida("Motorista", "Local Atual GPS", LocalTime.now().toString());
+					JOptionPane.showMessageDialog(null, "Solicitação de cancelamento de corrida enviada!", "Corrida Cancelada", JOptionPane.INFORMATION_MESSAGE);
+					setVisible(false); 
+					TelaMotorista.main(null);
 				}
 			}
 		});
