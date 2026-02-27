@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -16,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
@@ -32,7 +34,7 @@ public class CadastroMotorista extends JFrame {
 	private JTextField txtFieldCidade;
 	private JTextField txtFieldCEP;
 	private JTextField txtFieldUF;
-	private JTextField textField;
+	private JTextField txtFieldLogin;
 
 	/**
 	 * Launch the application.
@@ -81,11 +83,11 @@ public class CadastroMotorista extends JFrame {
         lblLogin.setBounds(211, 179, 46, 18);
         contentPane.add(lblLogin);
         
-        textField = new JTextField();
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        textField.setColumns(10);
-        textField.setBounds(266, 178, 120, 20);
-        contentPane.add(textField);
+        txtFieldLogin = new JTextField();
+        txtFieldLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        txtFieldLogin.setColumns(10);
+        txtFieldLogin.setBounds(266, 178, 120, 20);
+        contentPane.add(txtFieldLogin);
         
         JLabel lblseuNovoLogin = new JLabel("(Seu novo Login aqui)");
         lblseuNovoLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -214,14 +216,42 @@ public class CadastroMotorista extends JFrame {
         JButton btnCadastrar = new JButton("Cadastrar");
         btnCadastrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		/* Ações do Botão Cadastrar Motorista
-        		Motorista(String n, String ns, String cpf, String cnh, String end, String dn)
-        		txtFieldNome.getText(),
-        		txtFiledNomeSocial.getText(),
-        		txtFieldCPF.getText(),
-        		txtFieldCNH.getText(),
-        		txtFieldEndereco.getText() + txtFieldBairro.getText() + txtFieldCidade.getText() + txtFieldUF.getText() + txtFieldCEP.getText(),
-        		*/
+				// Ações do Botão Cadastrar Motorista
+				// Motorista(String l, String n, String ns, String cpf, String cnh, String end, String dn
+				String l = txtFieldLogin.getText();
+				String n = txtFieldNome.getText();
+				String ns = txtFiledNomeSocial.getText(); 
+				String cpf = txtFieldCPF.getText();
+				String cnh = txtFieldCNH.getText();
+				String log = txtFieldEndereco.getText();
+				String bairro = txtFieldBairro.getText();
+				String cidade = txtFieldCidade.getText();
+				String UF = txtFieldUF.getText();
+				String CEP = txtFieldCEP.getText();
+				String end = log +","+ bairro +","+ cidade +","+ UF +","+ CEP; 
+				String dn = "";
+				if(selectedDob != null) {
+		        	SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-YYYY");
+					dn = sdf.format(selectedDob);}
+				
+				if(l.isBlank() || n.isBlank() || ns.isBlank() || cpf.isBlank() || cnh.isBlank() || 
+						log.isBlank() || bairro.isBlank() || cidade.isBlank() || UF.isBlank() || CEP.isBlank())
+					JOptionPane.showMessageDialog(null,  "Favor completar todos os campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+				else {
+					if (DadosMotorista.loginExiste(l) || DadosUsuario.loginExiste(l))
+						JOptionPane.showMessageDialog(null, "Login já existe!\nFavor escolher outro Login.", "Atenção", JOptionPane.WARNING_MESSAGE);
+					else {
+						try {
+						    Motorista u = new Motorista(l, n, ns, cpf, cnh, end, dn);
+						    DadosMotorista.cadastraMotorista(u);
+							JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+							CadastroMotorista.this.setVisible(false);
+							TelaMotorista.main(null);
+						} catch (IllegalArgumentException ex) {
+						    JOptionPane.showMessageDialog(null, ex.getMessage(), "Atenção", JOptionPane.WARNING_MESSAGE);
+						}
+					}
+				}
         	}
         });
         btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
