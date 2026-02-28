@@ -75,10 +75,9 @@ public class Gerenciar extends JFrame {
 		getContentPane().add(btnBuscarMotoris);
 		
 		JButton btnBota1 = new JButton("...");
+		btnBota1.setEnabled(false);
 		btnBota1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false); 
-				CadastraVeiculo.main(null);
 			}
 		});
 		btnBota1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -87,6 +86,7 @@ public class Gerenciar extends JFrame {
 		frmTelaGerenciar.add(btnBota1);
 		
 		JButton btnBotao2 = new JButton("...");
+		btnBotao2.setEnabled(false);
 		btnBotao2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -97,6 +97,7 @@ public class Gerenciar extends JFrame {
 		frmTelaGerenciar.add(btnBotao2);
 		
 		JButton btnBotao3 = new JButton("...");
+		btnBotao3.setEnabled(false);
 		btnBotao3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
