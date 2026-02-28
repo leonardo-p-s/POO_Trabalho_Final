@@ -23,9 +23,9 @@ public class ConfirmarRemocaoMot extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, Motorista m) {
 		try {
-			ConfirmarRemocaoMot dialog = new ConfirmarRemocaoMot();
+			ConfirmarRemocaoMot dialog = new ConfirmarRemocaoMot(m);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class ConfirmarRemocaoMot extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ConfirmarRemocaoMot() {
+	public ConfirmarRemocaoMot(Motorista m) {
 		setTitle("Remover Motorista");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/UberLand_Icon.png")));
 		setBounds(100, 100, 450, 250);
@@ -73,6 +73,7 @@ public class ConfirmarRemocaoMot extends JDialog {
 				okButtonConfirmar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// Remove Motorista
+						DadosMotorista.excluiMotorista(m);
 						JOptionPane.showMessageDialog(null, "Motorista removido com sucesso!", "Motorista Removido", JOptionPane.INFORMATION_MESSAGE);
 						setVisible(false); 
 					}
