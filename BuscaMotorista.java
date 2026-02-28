@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -112,15 +113,34 @@ public class BuscaMotorista extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * Ações do botão Buscar Motorista
-				 * Verifica qual campo foi preenchido e realiza busca específica
+				
+				// Ações do botão Buscar Motorista
+				// Verifica qual campo foi preenchido e realiza busca específica
 				 
-				txtFieldNome.getText(),
-				txtFieldNomeSoc.getText(),
-				txtFieldCPF.getText(),
-				txtFieldCNH.getText(),
-				*/
+				String n = txtFieldNome.getText();
+				String ns = txtFieldNomeSoc.getText();
+				String cpf = txtFieldCPF.getText();
+				String cnh = txtFieldCNH.getText();
+				if(n.isBlank() && ns.isBlank() && cpf.isBlank() && cnh.isBlank())
+					JOptionPane.showMessageDialog(null,  "Favor preencher um dos campos!", "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+				else {
+				Motorista m = null;
+					if (!n.isBlank())
+						m = DadosMotorista.buscaMotoristaPorNome(n);
+					else if(!ns.isBlank())
+						m = DadosMotorista.buscaMotoristaPorNomeSoc(ns);
+					else if(!cpf.isBlank())
+						m = DadosMotorista.buscaMotoristaPorCPF(ns);
+					else if(!cnh.isBlank())
+						m = DadosMotorista.buscarMotoristaPorCNH(ns);
+					if(m != null) {
+						setVisible(false); 
+						MotoristaEncontrado.main(null, m);
+					} else {
+						setVisible(false); 
+						MotoristaNaoEncontrado.main(null);
+					}
+				}
 			}
 		});
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 13));
