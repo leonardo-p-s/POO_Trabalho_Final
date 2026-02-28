@@ -42,6 +42,7 @@ public class DadosCorrida {
         Corrida novaCorrida = new Corrida(solicitante, origem, destino, CatVeic, dataAtual, horaAtual);
 
         vetorCorridas.add(novaCorrida);
+        salvarArquivoCorridas();
 
         System.out.println("Corrida solicitada com sucesso!");
         return novaCorrida;
@@ -78,32 +79,33 @@ public class DadosCorrida {
     }
     
     public static Corrida corridaEmAndamentoUsuario() {
-    	Object u = Sessao.getInstancia().getUser();
-    	for (Corrida c : vetorCorridas) {
-    		if (u.equals(c.getSolicitante())) {
-    			if (!c.getStatusCorrida().equals("Finalizada")) {
-    				return c;
-    			}
-    		}
-    	}
-    	return null;
+        Usuario u = (Usuario) Sessao.getInstancia().getUser();
+        for (Corrida c : vetorCorridas) {
+            if (u.getLogin().equals(c.getSolicitante().getLogin()) && !"Finalizada".equals(c.getStatusCorrida())) {
+                return c;
+            }
+        }
+        return null;
     }
+
     
     public static String dadosCorridaEmAndamentoUsuario() {
-    	Object u = Sessao.getInstancia().getUser();
+    	Usuario u = (Usuario) Sessao.getInstancia().getUser();
     	for (Corrida c : vetorCorridas) {
     		if (u.equals(c.getSolicitante())) {
     			if (!c.getStatusCorrida().equals("Finalizada")) {
     				String or = c.getOrigem();
 					String dest = c.getDestino();
 					String status = c.getStatusCorrida();
+					if(status.equals("Aceita"))
+						status = status + "<br><b> >>> ATENÇãO:</b> Seu motorista está a caminho!<br>Dirija-se ao local de origem.";
 					String mot = "Aguarde!";
 					String veic = "Aguarde!";
-					String valor = "Aguarde!";
+					String valor = String.format("R$ %.2f (Valor previsto)", c.getValorTotalViagem());
 					if(!status.equals("Solicitada")) {
 						mot = c.getMotorista().getNomeSocial();
-						veic = c.getVeiculo().getMarca() + "-"+c.getVeiculo().getModelo();
-						valor = "R$ "+ c.getValorTotalViagem();
+						veic = c.getVeiculo().getMarca() + "-"+c.getVeiculo().getModelo() +" Placa: " + c.getVeiculo().getPlaca();
+						valor = String.format("R$ %.2f", c.getValorTotalViagem());
 					}
 	    				return("<html><b>Origem:</b> "	+ or +
 	    						"<br><b>Destino:</b> "	+ dest +
@@ -119,44 +121,48 @@ public class DadosCorrida {
     }
     
     public static Corrida corridaEmAndamentoMotorista() {
-    	Object u = Sessao.getInstancia().getUser();
-    	for (Corrida c : vetorCorridas) {
-    		if(!c.getStatusCorrida().equals("Solicitada")) {
-	    		if (u.equals(c.getMotorista())) {
-	    			if (!c.getStatusCorrida().equals("Finalizada")) {
-	    				return c;
-	    			}
-	    		}
-    		}
-    	}
+    	Motorista m = (Motorista) Sessao.getInstancia().getUser();
+    	for (Corrida c : vetorCorridas) 
+    		if(!"Solicitada".equals(c.getStatusCorrida()))
+    			if (!"Finalizada".equals(c.getStatusCorrida()))
+    				if (m.getLogin().equals(c.getMotorista().getLogin())) 
+    					return c;
     	return null;
     }
+
     
     public static String dadosCorridaEmAndamentoMotorista() {
-    	Object u = Sessao.getInstancia().getUser();
-    	for (Corrida c : vetorCorridas) {
-    		if(!c.getStatusCorrida().equals("Solicitada")) {
-	    		if (u.equals(c.getMotorista())) {
-	    			if (!c.getStatusCorrida().equals("Finalizada")) {
-	    				String or = c.getOrigem();
-						String dest = c.getDestino();
-						String status = c.getStatusCorrida();
-						String solic = c.getSolicitante().getNome();
-						String veic = c.getVeiculo().getMarca() + "-"+c.getVeiculo().getModelo();
-						String valor = "R$ "+ c.getValorTotalViagem();
-	    				return("<html><b>Origem:</b> "	+ or +
-	    						"<br><b>Destino:</b> "	+ dest +
-	    						"<br><b>Nome Passageiro:</b> "	+solic+
-	    						"<br><b>Veículo:</b> "	+ veic+
-	    						"<br><b>Valor Total:</b> "	+ valor +
-	    						"<br><b>Status:</b> "	+status+
-	    						" </html>");
-	    			}
-	    		}
-    		}
+    	Corrida c = corridaEmAndamentoMotorista();
+    	if(c != null) {
+			String or = c.getOrigem();
+			String dest = c.getDestino();
+			String status = c.getStatusCorrida();
+			if(status.equals("Aceita"))
+				status = status + "<br><b> >>> ATENÇãO:</b> O(a) passageiro(a) está aguardando!<br>Dirija-se ao local de origem.";
+			String solic = c.getSolicitante().getNome();
+			String veic = c.getVeiculo().getMarca() + "-"+c.getVeiculo().getModelo();
+			String valor = String.format("R$ %.2f ", c.getValorTotalViagem());
+			return("<html><b>Origem:</b> "	+ or +
+					"<br><b>Destino:</b> "	+ dest +
+					"<br><b>Nome Passageiro:</b> "	+solic+
+					"<br><b>Veículo:</b> "	+ veic+
+					"<br><b>Valor Total:</b> "	+ valor +
+					"<br><b>Status:</b> "	+status+
+					" </html>");
     	}
     	return "";
     }
+    
+    public static Corrida corridaDiponivel() {
+    	//Motorista u = (Motorista) Sessao.getInstancia().getUser();
+    	
+    	for (Corrida c : vetorCorridas) {
+    		if(c.getStatusCorrida().equals("Solicitada")) 
+	    		return c;
+    	}
+    	return null;
+    }
+    	
 
     public static void salvarArquivoCorridas() {
         Persist.gravar(vetorCorridas, "corridas.dat");
