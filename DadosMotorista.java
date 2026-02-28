@@ -34,8 +34,12 @@ public class DadosMotorista {
             }
 
         }
-
         return false; // caso contrário, e nenhum motorista seja encontrado, retornamos falso, ou seja, o login falhou!
+    }
+    
+    public static void fazerLogoutMotorista() {
+        Sessao.getInstancia().setUser(null); // o usuário logado passa a ser nulo, ou seja, nenhum usuário estará logado no sistema
+        System.out.println("Logout de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o logout deu certo
     }
 
     public Motorista buscarMotorista (String cnh){
