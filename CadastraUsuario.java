@@ -216,6 +216,7 @@ public class CadastraUsuario {
 						    Usuario u = new Usuario(l, n, cel, cpf, email, dn, sex, fp);
 						    DadosUsuario.cadastrarUsuario(u);
 							JOptionPane.showMessageDialog(null,  "Usuário cadastrado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+							DadosUsuario.fazerLoginUsuario(u.getLogin());
 							frmCadastroDeUsurio.setVisible(false);
 							TelaUsuario.main(null);
 						} catch (IllegalArgumentException ex) {
