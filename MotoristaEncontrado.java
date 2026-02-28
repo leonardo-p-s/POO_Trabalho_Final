@@ -87,33 +87,10 @@ public class MotoristaEncontrado extends JDialog {
 		}
 		{
 			JLabel lblEndereo = new JLabel("<html><b>Endereço:</b> " + end);
+			lblEndereo.setVerticalAlignment(SwingConstants.TOP);
 			lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblEndereo.setBounds(10, 187, 400, 14);
+			lblEndereo.setBounds(10, 187, 400, 103);
 			contentPanel.add(lblEndereo);
-		}
-		{
-			JLabel lblBairro = new JLabel("Bairro:");
-			lblBairro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblBairro.setBounds(10, 212, 400, 14);
-			contentPanel.add(lblBairro);
-		}
-		{
-			JLabel lblCidade = new JLabel("Cidade:");
-			lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCidade.setBounds(10, 237, 400, 14);
-			contentPanel.add(lblCidade);
-		}
-		{
-			JLabel lblCep = new JLabel("CEP:");
-			lblCep.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCep.setBounds(10, 288, 400, 14);
-			contentPanel.add(lblCep);
-		}
-		{
-			JLabel lblUf = new JLabel("UF:");
-			lblUf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblUf.setBounds(10, 262, 400, 14);
-			contentPanel.add(lblUf);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -123,7 +100,7 @@ public class MotoristaEncontrado extends JDialog {
 				JButton removerButton = new JButton("Remover Motorista");
 				removerButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ConfirmarRemocaoMot.main(null);
+						ConfirmarRemocaoMot.main(null, m);
 					}
 				});
 				removerButton.setActionCommand("Remover Motorista");
@@ -134,7 +111,8 @@ public class MotoristaEncontrado extends JDialog {
 				JButton cancelButton = new JButton("Fechar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false); 
+						setVisible(false);
+						// BuscaMotorista.main(null);
 					}
 				});
 				cancelButton.setActionCommand("Fechar");
