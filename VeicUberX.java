@@ -4,8 +4,8 @@ public class VeicUberX extends Veiculo {
 	private boolean PossuiAC;
 	private boolean PossuiConfBasico;
 	
-	private static float TarifaMinima;
-	private static float CustoPorKm;
+	private static float TarifaMinima = 4.00f;
+	private static float CustoPorKm = 0.85f;
 	
 	// Constructors
 	public VeicUberX(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ac, boolean cb) {
@@ -25,5 +25,8 @@ public class VeicUberX extends Veiculo {
 		if(PossuiAC || PossuiConfBasico)
 			CustoBasico = CustoBasico + TarifaMinima;
 		return CustoBasico;
+	}
+	public static float CalculaCustoViagemSolicitada(float DistKm) {
+		return (DistKm * CustoPorKm) + TarifaMinima;
 	}
 }
