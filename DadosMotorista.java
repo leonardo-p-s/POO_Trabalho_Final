@@ -42,35 +42,35 @@ public class DadosMotorista {
         System.out.println("Logout de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o logout deu certo
     }
     
-    public Motorista buscaMotoristaPorNome (String nome) {
+    public static Motorista buscaMotoristaPorNome (String nome) {
     	for (Motorista m : vetorMotoristas)
     		if(nome.equals(m.getNome()))
     			return m;
     	return null;
     }
     
-    public Motorista buscaMotoristaPorCPF (String cpf) {
+    public static Motorista buscaMotoristaPorCPF (String cpf) {
     	for (Motorista m : vetorMotoristas)
     		if(cpf.equals(m.getCPF()))
     			return m;
     	return null;
     }
     
-    public Motorista buscaMotoristaPorNomeSoc (String ns) {
+    public static Motorista buscaMotoristaPorNomeSoc (String ns) {
     	for (Motorista m : vetorMotoristas)
     		if(ns.equals(m.getNomeSocial()))
     			return m;
     	return null;
     }
 
-    public Motorista buscarMotoristaPorCNH (String cnh){
+    public static Motorista buscarMotoristaPorCNH (String cnh){
     	for (Motorista m : vetorMotoristas) // percorremos o vetor de motoristas do início ao fim...
             if(cnh.equals(m.getCNH())) // se o cpf procurado pertencer a algum motorista cadastrado...
                 return m; // retornamos os dados do motorista desejado
         return null; // caso não encontrarmos o motorista desejado, simplesmente retornamos nulo.
     }
     
-    public void excluiMotorista(Motorista m) {
+    public static void excluiMotorista(Motorista m) {
     	vetorMotoristas.remove(m);
     }
 
