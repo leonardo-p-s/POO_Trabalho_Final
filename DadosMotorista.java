@@ -41,21 +41,40 @@ public class DadosMotorista {
         Sessao.getInstancia().setUser(null); // o usuário logado passa a ser nulo, ou seja, nenhum usuário estará logado no sistema
         System.out.println("Logout de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o logout deu certo
     }
-
-    public Motorista buscarMotorista (String cnh){
-
-        for(int i = 0; i < vetorMotoristas.size(); i++){ // percorremos o vetor de motoristas do início ao fim...
-            Motorista m = vetorMotoristas.get(i); // para cada execução do comando de laço, um motorista diferente será testado, e "identificamos" o motorista pelo seu índice no vetor
-
-            if(cnh.equals(m.getCNH())){ // se o cpf procurado pertencer a algum motorista cadastrado...
-                return m; // retornamos os dados do motorista desejado
-            }
-        }
-
-        return null; // caso não encontrarmos o motorista desejado, simplesmente retornamos nulo.
+    
+    public Motorista buscaMotoristaPorNome (String nome) {
+    	for (Motorista m : vetorMotoristas)
+    		if(nome.equals(m.getNome()))
+    			return m;
+    	return null;
+    }
+    
+    public Motorista buscaMotoristaPorCPF (String cpf) {
+    	for (Motorista m : vetorMotoristas)
+    		if(cpf.equals(m.getCPF()))
+    			return m;
+    	return null;
+    }
+    
+    public Motorista buscaMotoristaPorNomeSoc (String ns) {
+    	for (Motorista m : vetorMotoristas)
+    		if(ns.equals(m.getNomeSocial()))
+    			return m;
+    	return null;
     }
 
-    public void excluirMotorista (String cnh){
+    public Motorista buscarMotoristaPorCNH (String cnh){
+    	for (Motorista m : vetorMotoristas) // percorremos o vetor de motoristas do início ao fim...
+            if(cnh.equals(m.getCNH())) // se o cpf procurado pertencer a algum motorista cadastrado...
+                return m; // retornamos os dados do motorista desejado
+        return null; // caso não encontrarmos o motorista desejado, simplesmente retornamos nulo.
+    }
+    
+    public void excluiMotorista(Motorista m) {
+    	vetorMotoristas.remove(m);
+    }
+
+    public void excluirMotoristaPorCNH (String cnh){
         for(int i = 0; i < vetorMotoristas.size(); i++){ // percorremos o vetor de motoristas do início ao fim...
             Motorista m = vetorMotoristas.get(i); // a cada execução do comando de laço, um novo motorista que está cadastrado no vetor será utilizado para que os testes acontecam...
 
@@ -66,7 +85,6 @@ public class DadosMotorista {
                 break; // e então, solicitamos para que o comando de laço se encerre, já que encontramos o motorista desejado e já o removemos do array...
             }
         }
-
         System.out.println("Motorista não encontrado!"); // caso contrário, e nenhum motorista possui o cnh inserido, exibimos uma mensagem de erro, dizendo que o motorista não foi encontrado.
     }
 
