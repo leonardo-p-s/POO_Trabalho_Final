@@ -51,10 +51,12 @@ public class TelaUsuario extends JFrame {
 		
 		Usuario u = (Usuario) Sessao.getInstancia().getUser();
 		
-		JLabel lblUsuario = new JLabel(u.getLogin());
-		lblUsuario.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblUsuario.setBounds(654, 11, 100, 41);
+		String[] nome = u.getNome().split(" ", 2);
+		String primeiroNome = nome[0];
+		
+		JLabel lblUsuario = new JLabel("<html><b>Olá, " + primeiroNome +"!<br></b>(Cliente)");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUsuario.setBounds(10, 11, 100, 41);
 		frmTelaUsuario.add(lblUsuario);
 		
 		JLabel labelLogo = new JLabel("");
@@ -70,6 +72,20 @@ public class TelaUsuario extends JFrame {
 		lblTitulo.setBounds(282, 118, 200, 29);
 		getContentPane().add(lblTitulo);
 		
+		JButton btnCorridaAtual = new JButton("Corrida em Andamento");
+		btnCorridaAtual.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false); 
+				TelaStatusCorridaUsuario.main(null);
+			}
+		});
+		btnCorridaAtual.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCorridaAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		if(DadosCorrida.corridaEmAndamentoUsuario() == null)
+			btnCorridaAtual.setEnabled(false);
+		btnCorridaAtual.setBounds(176, 165, 180, 23);
+		frmTelaUsuario.add(btnCorridaAtual);	
+		
 		JButton btnPedirCarro = new JButton("Pedir um carro");
 		btnPedirCarro.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPedirCarro.addActionListener(new ActionListener() {
@@ -80,20 +96,12 @@ public class TelaUsuario extends JFrame {
 			}
 		});
 		btnPedirCarro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		if(DadosCorrida.corridaEmAndamentoUsuario()!=null)
+			btnPedirCarro.setEnabled(false);
 		btnPedirCarro.setBounds(176, 205, 180, 23);
 		getContentPane().add(btnPedirCarro);
 		
-		btnSair = new JButton("Sair");
-		btnSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false); 
-				TelaInicio.main(null);
-			}
-		});
-		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSair.setBounds(176, 372, 100, 23);
-		getContentPane().add(btnSair);
-		
+	
 		JButton btnVerViagens = new JButton("Minhas viagens");
 		btnVerViagens.setEnabled(false);
 		btnVerViagens.addActionListener(new ActionListener() {
@@ -113,21 +121,22 @@ public class TelaUsuario extends JFrame {
 		btnVerMeusDados.setBounds(176, 311, 180, 23);
 		frmTelaUsuario.add(btnVerMeusDados);
 		
-		
-		
-		JButton btnCorridaAtual = new JButton("Corrida em Andamento");
-		btnCorridaAtual.addActionListener(new ActionListener() {
+		btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false); 
-				TelaStatusCorridaUsuario.main(null);
+				DadosUsuario.fazerLogoutUsuario();
+				DadosUsuario.salvarArquivoUsuarios();
+				DadosCorrida.salvarArquivoCorridas();
+				DadosMotorista.salvarArquivoMotoristas();
+				DadosVeiculos.salvarArquivoVeiculos();
+				TelaInicio.main(null);
 			}
 		});
-		btnCorridaAtual.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCorridaAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		if(DadosCorrida.dadosCorridaEmAndamentoUsuario().isBlank())
-			btnCorridaAtual.setEnabled(false);
-		btnCorridaAtual.setBounds(176, 165, 180, 23);
-		frmTelaUsuario.add(btnCorridaAtual);		
+		btnSair.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSair.setBounds(176, 372, 100, 23);
+		getContentPane().add(btnSair);
+	
 	}
 
 }
