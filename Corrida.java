@@ -39,6 +39,7 @@ public class Corrida implements Serializable{
 		setDataSolicit(d);
 		setHoraSolicit(h);
 		setStatusCorrida("Solicitada");
+		setValorTotalViagem(DistPercorrida(or, dest));			// Valor inicial, baseado na distancia Prevista/Esperada
 	}
 	
 	// Getters and Setters
@@ -64,7 +65,15 @@ public class Corrida implements Serializable{
 	public void setDistanciaPercorrida(float distanciaPercorrida) {DistanciaPercorrida = distanciaPercorrida;}
 	public float getValorTotalViagem() {return ValorTotalViagem;}
 	public void setValorTotalViagem(float DistKm) {
-		ValorTotalViagem = veiculo.CalculaCustoViagem(DistKm);}
+		if(veiculo != null)
+			ValorTotalViagem = veiculo.CalculaCustoViagem(DistKm);
+		else if (CategoriaVeic == "UberX")
+			ValorTotalViagem = VeicUberX.CalculaCustoViagemSolicitada(DistKm);
+		else if (CategoriaVeic == "UberConfort")
+			ValorTotalViagem = VeicUberConfort.CalculaCustoViagemSolicitada(DistKm);
+		else
+			ValorTotalViagem = VeicUberBlack.CalculaCustoViagemSolicitada(DistKm);
+		}
 	public float getValorExtra() {return ValorExtra;}
 	public void setValorExtra(float valorExtra) {ValorExtra = valorExtra;}
 	public static float getPorcentUberLand() {return PorcentUberLand;}
@@ -117,6 +126,12 @@ public class Corrida implements Serializable{
 	public float DistPercorrida(String Origem, String LocalFim) {
 		// ... Calculo distancia percorrida
 		return 10.5f;
+	}
+	
+	public void IniciarCorrida(String hora) {
+		setStatusCorrida("Iniciada");
+		setHoraChegadaMotOrigem(hora);
+		DadosCorrida.salvarArquivoCorridas();
 	}
 
 	public void ConcluirCorrida(String LocalAtual, String hora) {
