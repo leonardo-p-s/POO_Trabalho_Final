@@ -5,8 +5,8 @@ public class VeicUberConfort extends Veiculo {
 	private boolean PossuiBancRecl;
 	private boolean PossuiACDualZone;
 	
-	private static float TarifaMinima;
-	private static float CustoPorKm;
+	private static float TarifaMinima = 5.0f;
+	private static float CustoPorKm = 0.95f;
 	
 	// Constructors
 	public VeicUberConfort(Motorista condut, String marca, String mod, int a, String p, String vn, String c, int cap, boolean ee, boolean br, boolean acdz) {
@@ -30,5 +30,8 @@ public class VeicUberConfort extends Veiculo {
 		if(PossuiACDualZone || PossuiEspacoExtra)
 			CustoBasico = CustoBasico + (2 * TarifaMinima);
 		return CustoBasico;
+	}
+	public static float CalculaCustoViagemSolicitada(float DistKm) {
+		return (DistKm * CustoPorKm) + TarifaMinima;
 	}
 }
