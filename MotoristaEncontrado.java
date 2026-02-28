@@ -22,7 +22,7 @@ public class MotoristaEncontrado extends JDialog {
 	 */
 	public static void main(String[] args, Motorista m) {
 		try {
-			MotoristaEncontrado dialog = new MotoristaEncontrado();
+			MotoristaEncontrado dialog = new MotoristaEncontrado(m);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,7 +33,7 @@ public class MotoristaEncontrado extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public MotoristaEncontrado() {
+	public MotoristaEncontrado(Motorista m) {
 		setTitle("Motorista Encontrado");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/UberLand_Icon.png")));
 		setBounds(100, 100, 450, 400);
@@ -41,8 +41,14 @@ public class MotoristaEncontrado extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		String nome = m.getNome();
+		String ns = m.getNomeSocial();
+		String cpf = m.getCPF();
+		String cnh = m.getCNH();
+		String dn = m.getDataNasc();
+		String end = m.getEndereco();
 		{
-			JLabel lblNewLabel = new JLabel("Motorista encontrado!");
+			JLabel lblNewLabel = new JLabel("<html><b>Motorista encontrado!</b>");
 			lblNewLabel.setBounds(127, 10, 180, 20);
 			lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -50,63 +56,63 @@ public class MotoristaEncontrado extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("Nome:");
+			JLabel lblNewLabel = new JLabel("<html><b>Nome:</b> " + nome);
 			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblNewLabel.setBounds(10, 48, 46, 14);
+			lblNewLabel.setBounds(10, 48, 400, 14);
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNomeSocialcomo = new JLabel("Nome Social");
+			JLabel lblNomeSocialcomo = new JLabel("<html><b>Nome Social:</b> " + ns);
 			lblNomeSocialcomo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblNomeSocialcomo.setBounds(10, 73, 90, 14);
+			lblNomeSocialcomo.setBounds(10, 73, 400, 14);
 			contentPanel.add(lblNomeSocialcomo);
 		}
 		{
-			JLabel lblCpf = new JLabel("CPF:");
+			JLabel lblCpf = new JLabel("<html><b>CPF:</b> " + cpf);
 			lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCpf.setBounds(10, 98, 46, 14);
+			lblCpf.setBounds(10, 98, 400, 14);
 			contentPanel.add(lblCpf);
 		}
 		{
-			JLabel lblCnh = new JLabel("CNH:");
+			JLabel lblCnh = new JLabel("<html><b>CNH:</b> " + cnh);
 			lblCnh.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCnh.setBounds(10, 123, 46, 14);
+			lblCnh.setBounds(10, 123, 400, 14);
 			contentPanel.add(lblCnh);
 		}
 		{
-			JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
+			JLabel lblDataDeNascimento = new JLabel("<html><b>Data de Nascimento:</b> " + dn);
 			lblDataDeNascimento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblDataDeNascimento.setBounds(10, 148, 124, 14);
+			lblDataDeNascimento.setBounds(10, 148, 400, 14);
 			contentPanel.add(lblDataDeNascimento);
 		}
 		{
-			JLabel lblEndereo = new JLabel("Endereço:");
+			JLabel lblEndereo = new JLabel("<html><b>Endereço:</b> " + end);
 			lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblEndereo.setBounds(10, 187, 64, 14);
+			lblEndereo.setBounds(10, 187, 400, 14);
 			contentPanel.add(lblEndereo);
 		}
 		{
 			JLabel lblBairro = new JLabel("Bairro:");
 			lblBairro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblBairro.setBounds(10, 212, 46, 14);
+			lblBairro.setBounds(10, 212, 400, 14);
 			contentPanel.add(lblBairro);
 		}
 		{
 			JLabel lblCidade = new JLabel("Cidade:");
 			lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCidade.setBounds(10, 237, 46, 14);
+			lblCidade.setBounds(10, 237, 400, 14);
 			contentPanel.add(lblCidade);
 		}
 		{
 			JLabel lblCep = new JLabel("CEP:");
 			lblCep.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblCep.setBounds(10, 288, 46, 14);
+			lblCep.setBounds(10, 288, 400, 14);
 			contentPanel.add(lblCep);
 		}
 		{
 			JLabel lblUf = new JLabel("UF:");
 			lblUf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblUf.setBounds(10, 262, 46, 14);
+			lblUf.setBounds(10, 262, 400, 14);
 			contentPanel.add(lblUf);
 		}
 		{
