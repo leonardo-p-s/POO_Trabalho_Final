@@ -49,6 +49,11 @@ public class Gerenciar extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/UberLand_Icon.png")));
 		frmTelaGerenciar.setLayout(null);
 		
+		JLabel lblGerente = new JLabel("<html><b>Olá </b>(Gerente)!");
+		lblGerente.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblGerente.setBounds(10, 11, 100, 41);
+		frmTelaGerenciar.add(lblGerente);
+		
 		JLabel labelLogo = new JLabel("");
 		labelLogo.setForeground(new Color(0, 0, 0));
 		labelLogo.setBackground(new Color(0, 0, 0));
@@ -110,6 +115,10 @@ public class Gerenciar extends JFrame {
 		btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DadosUsuario.salvarArquivoUsuarios();
+				DadosCorrida.salvarArquivoCorridas();
+				DadosMotorista.salvarArquivoMotoristas();
+				DadosVeiculos.salvarArquivoVeiculos();
 				setVisible(false); 
 				TelaInicio.main(null);
 			}
