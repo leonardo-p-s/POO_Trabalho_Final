@@ -52,8 +52,8 @@ public class TelaMotorista extends JFrame {
 		Motorista m = (Motorista) Sessao.getInstancia().getUser();
 		frmTelaMotorista.setLayout(null);
 		
-		JLabel lblMotorista = new JLabel(m.getNomeSocial());
-		lblMotorista.setFont(new Font("Tahoma", Font.BOLD, 15));
+		JLabel lblMotorista = new JLabel("<html><b>Olá, " + m.getNomeSocial() +"!<br></b>(Motorista)");
+		lblMotorista.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMotorista.setBounds(10, 11, 100, 41);
 		frmTelaMotorista.add(lblMotorista);
 		
@@ -81,7 +81,7 @@ public class TelaMotorista extends JFrame {
 		});
 		btnVerCorridaAtual.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerCorridaAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		if(DadosCorrida.dadosCorridaEmAndamentoMotorista().isBlank())
+		if(DadosCorrida.corridaEmAndamentoMotorista() == null)
 			btnVerCorridaAtual.setEnabled(false);
 		frmTelaMotorista.add(btnVerCorridaAtual);
 		
@@ -111,6 +111,7 @@ public class TelaMotorista extends JFrame {
 						// Motorista aceitou a corrida
 						Veiculo v = m.getVeiculos().getFirst();
 						c.AceitarCorrida(v);
+						c.setMotorista(m);
 						setVisible(false); 
 						TelaStatusCorridaMotorista.main(null);
 					}
@@ -173,6 +174,10 @@ public class TelaMotorista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false); 
 				DadosMotorista.fazerLogoutMotorista();
+				DadosUsuario.salvarArquivoUsuarios();
+				DadosCorrida.salvarArquivoCorridas();
+				DadosMotorista.salvarArquivoMotoristas();
+				DadosVeiculos.salvarArquivoVeiculos();
 				TelaInicio.main(null);
 			}
 		});
