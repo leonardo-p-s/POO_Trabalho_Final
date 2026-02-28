@@ -45,6 +45,10 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		setBounds(100, 100, 780, 735);
 		getContentPane().setLayout(null);
 		
+		DadosCorrida.recuperarArquivoCorridas();
+		Corrida c = DadosCorrida.corridaEmAndamentoMotorista(); 
+		String dc = DadosCorrida.dadosCorridaEmAndamentoMotorista();
+		
 		frmTelaStatusCorrMotorista = new JPanel();
 		frmTelaStatusCorrMotorista.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(frmTelaStatusCorrMotorista);
@@ -65,9 +69,9 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		getContentPane().add(lblTitulo);
 		
 		String dadosCorrida = "<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>";
-		String c = DadosCorrida.dadosCorridaEmAndamentoMotorista();
-		if (!c.isBlank())
-			dadosCorrida = c;
+
+		if (!dc.isBlank())
+			dadosCorrida = dc;
 		
 		JLabel lblDetalhesCorrida = new JLabel(dadosCorrida);
 		lblDetalhesCorrida.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -77,13 +81,17 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		JButton btnIniciarCorrida = new JButton("Iniciar Corrida");
 		btnIniciarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
 				c.IniciarCorrida(LocalTime.now().toString());
-				JOptionPane.showMessageDialog(null, "Corrida Inicializada!", "Corrida Inicializada", JOptionPane.INFORMATION_MESSAGE);
+				DadosCorrida.salvarArquivoCorridas();
+				JOptionPane.showMessageDialog(null, "Corrida Iniciada!", "Corrida Iniciada", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false);
+				TelaStatusCorridaMotorista.main(null);
 			}
 		});
 		btnIniciarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
 		btnIniciarCorrida.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		if(!"Aceita".equals(c.getStatusCorrida()))
+			btnIniciarCorrida.setEnabled(false);
 		btnIniciarCorrida.setBounds(175, 341, 150, 23);
 		frmTelaStatusCorrMotorista.add(btnIniciarCorrida);
 		
@@ -94,6 +102,7 @@ public class TelaStatusCorridaMotorista extends JFrame {
 				if(resp == JOptionPane.YES_OPTION) {
 					Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
 					c.ConcluirCorrida("Loca Atual GPS", LocalTime.now().toString());
+					DadosCorrida.salvarArquivoCorridas();
 					JOptionPane.showMessageDialog(null, "Corrida Finalizada!", "Corrida Finalizada", JOptionPane.INFORMATION_MESSAGE);
 					setVisible(false); 
 					TelaMotorista.main(null);
@@ -114,6 +123,7 @@ public class TelaStatusCorridaMotorista extends JFrame {
 					// Cancelar corrida
 					Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
 					c.CancelarCorrida("Motorista", "Local Atual GPS", LocalTime.now().toString());
+					DadosCorrida.salvarArquivoCorridas();
 					JOptionPane.showMessageDialog(null, "Solicitação de cancelamento de corrida enviada!", "Corrida Cancelada", JOptionPane.INFORMATION_MESSAGE);
 					setVisible(false); 
 					TelaMotorista.main(null);
