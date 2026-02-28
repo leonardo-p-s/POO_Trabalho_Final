@@ -82,6 +82,15 @@ public class Usuario implements Serializable {
 		NotaTotal += Nota;
 		setNotaMediaAval(NotaTotal / NroCorridasAval);		// Atualiza nota média
 	}
+	@Override public boolean equals(Object o) { 
+		if (this == o) return true; 
+		if (!(o instanceof Usuario)) return false; 
+		Usuario u = (Usuario) o; 
+		return Login != null && Login.equals(u.getLogin()); 
+		} 
+	@Override public int hashCode() { 
+		return Login != null ? Login.hashCode() : 0; 
+		}
 	@Override
 	public String toString() {
 		return "Usuario [Login=" + Login + ", Nome=" + Nome + ", NroCelular=" + NroCelular + ", CPF=" + CPF + ", email="
