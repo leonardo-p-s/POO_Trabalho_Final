@@ -45,6 +45,10 @@ public class TelaStatusCorridaUsuario extends JFrame {
 		setBounds(100, 100, 780, 735);
 		getContentPane().setLayout(null);
 		
+		DadosCorrida.recuperarArquivoCorridas();
+		//Corrida c = DadosCorrida.corridaEmAndamentoUsuario(); 
+		String dc = DadosCorrida.dadosCorridaEmAndamentoUsuario();
+		
 		frmTelaStatusCorrUsuario = new JPanel();
 		frmTelaStatusCorrUsuario.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(frmTelaStatusCorrUsuario);
@@ -65,10 +69,9 @@ public class TelaStatusCorridaUsuario extends JFrame {
 		getContentPane().add(lblTitulo);
 		
 		String dadosCorrida = "<html>Origem: <br>Destino: <br>Nome Passageiro: <br>Veículo: <br>Valor Total: <br>Status:  </html>";
-		String c = DadosCorrida.dadosCorridaEmAndamentoUsuario();
 		
-		if (!c.isBlank())
-			dadosCorrida = c;
+		if (!dc.isBlank())
+			dadosCorrida = dc;
 		
 		JLabel lblDetalhesCorrida = new JLabel(dadosCorrida);
 		lblDetalhesCorrida.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -83,6 +86,7 @@ public class TelaStatusCorridaUsuario extends JFrame {
 					// Cancelar corrida
 					Corrida c = DadosCorrida.corridaEmAndamentoUsuario();
 					c.CancelarCorrida("Usuario", "Local Atual GPS", LocalTime.now().toString());
+					DadosCorrida.salvarArquivoCorridas();
 					JOptionPane.showMessageDialog(null, "Solicitação de cancelamento de corrida enviada!", "Corrida Cancelada", JOptionPane.INFORMATION_MESSAGE);
 					setVisible(false); 
 					TelaUsuario.main(null);
