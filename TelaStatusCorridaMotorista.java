@@ -74,6 +74,19 @@ public class TelaStatusCorridaMotorista extends JFrame {
 		lblDetalhesCorrida.setBounds(175, 169, 373, 179);
 		frmTelaStatusCorrMotorista.add(lblDetalhesCorrida);
 		
+		JButton btnIniciarCorrida = new JButton("Iniciar Corrida");
+		btnIniciarCorrida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Corrida c = DadosCorrida.corridaEmAndamentoMotorista();
+				c.IniciarCorrida(LocalTime.now().toString());
+				JOptionPane.showMessageDialog(null, "Corrida Inicializada!", "Corrida Inicializada", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		btnIniciarCorrida.setHorizontalAlignment(SwingConstants.LEFT);
+		btnIniciarCorrida.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnIniciarCorrida.setBounds(175, 341, 150, 23);
+		frmTelaStatusCorrMotorista.add(btnIniciarCorrida);
+		
 		JButton btnFinalizarCorrida = new JButton("Finalizar Corrida");
 		btnFinalizarCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,8 +133,9 @@ public class TelaStatusCorridaMotorista extends JFrame {
 			}
 		});
 		btnFechar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnFechar.setBounds(175, 409, 100, 23);
+		btnFechar.setBounds(175, 429, 100, 23);
 		getContentPane().add(btnFechar);
-	}
+		
 
+	}
 }
