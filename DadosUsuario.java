@@ -34,7 +34,7 @@ public class DadosUsuario {
 	   return false; // caso contrário, e nenhum usuário seja encontrado, retornamos falso, ou seja, o login falhou!
    }
 
-   public void fazerLogoutUsuario() {
+   public static void fazerLogoutUsuario() {
         Sessao.getInstancia().setUser(null); // o usuário logado passa a ser nulo, ou seja, nenhum usuário estará logado no sistema
         System.out.println("Logout de usuário efetuado com sucesso!"); // exibimos uma mensagem dizendo que o logout deu certo
     }
