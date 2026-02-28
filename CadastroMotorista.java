@@ -242,9 +242,10 @@ public class CadastroMotorista extends JFrame {
 						JOptionPane.showMessageDialog(null, "Login já existe!\nFavor escolher outro Login.", "Atenção", JOptionPane.WARNING_MESSAGE);
 					else {
 						try {
-						    Motorista u = new Motorista(l, n, ns, cpf, cnh, end, dn);
-						    DadosMotorista.cadastraMotorista(u);
+						    Motorista m = new Motorista(l, n, ns, cpf, cnh, end, dn);
+						    DadosMotorista.cadastraMotorista(m);
 							JOptionPane.showMessageDialog(null,  "Cadastro criado com sucesso!", "Confirmado", JOptionPane.INFORMATION_MESSAGE);
+							DadosMotorista.fazerLoginMotorista(m.getLogin());
 							CadastroMotorista.this.setVisible(false);
 							TelaMotorista.main(null);
 						} catch (IllegalArgumentException ex) {
