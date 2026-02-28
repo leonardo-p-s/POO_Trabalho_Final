@@ -130,14 +130,14 @@ public class BuscaMotorista extends JFrame {
 					else if(!ns.isBlank())
 						m = DadosMotorista.buscaMotoristaPorNomeSoc(ns);
 					else if(!cpf.isBlank())
-						m = DadosMotorista.buscaMotoristaPorCPF(ns);
+						m = DadosMotorista.buscaMotoristaPorCPF(cpf);
 					else if(!cnh.isBlank())
-						m = DadosMotorista.buscarMotoristaPorCNH(ns);
+						m = DadosMotorista.buscarMotoristaPorCNH(cnh);
 					if(m != null) {
-						setVisible(false); 
+						//setVisible(false); 
 						MotoristaEncontrado.main(null, m);
 					} else {
-						setVisible(false); 
+						//setVisible(false); 
 						MotoristaNaoEncontrado.main(null);
 					}
 				}
