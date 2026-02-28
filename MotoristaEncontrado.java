@@ -20,7 +20,7 @@ public class MotoristaEncontrado extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, Motorista m) {
 		try {
 			MotoristaEncontrado dialog = new MotoristaEncontrado();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
