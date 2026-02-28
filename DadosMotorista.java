@@ -72,6 +72,7 @@ public class DadosMotorista {
     
     public static void excluiMotorista(Motorista m) {
     	vetorMotoristas.remove(m);
+    	salvarArquivoMotoristas();
     }
 
     public void excluirMotoristaPorCNH (String cnh){
