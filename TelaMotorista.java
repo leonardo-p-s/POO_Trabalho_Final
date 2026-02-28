@@ -172,6 +172,7 @@ public class TelaMotorista extends JFrame {
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false); 
+				DadosMotorista.fazerLogoutMotorista();
 				TelaInicio.main(null);
 			}
 		});
