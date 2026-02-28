@@ -6,8 +6,8 @@ public class VeicUberBlack extends Veiculo {
 	private boolean PossuiRodasLigaLev;
 	private int CapacidadeMalas;
 	
-	private static float TarifaMinima;
-	private static float CustoPorKm;
+	private static float TarifaMinima = 6.00f;
+	private static float CustoPorKm = 1.15f;
 	
 	// Constructors
 	public VeicUberBlack(Motorista cond, String mar, String mod, int a, String p, String vn, String c, int cap, boolean ip, boolean rll, int cm) {
@@ -29,5 +29,8 @@ public class VeicUberBlack extends Veiculo {
 		float CustoBasico = (DistKm * CustoPorKm) + TarifaMinima;
 		CustoBasico = CustoBasico + (TarifaMinima * CapacidadeMalas);
 		return CustoBasico;
+	}
+	public static float CalculaCustoViagemSolicitada(float DistKm) {
+		return (DistKm * CustoPorKm) + TarifaMinima;
 	}
 }
